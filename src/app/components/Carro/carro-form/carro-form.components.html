@@ -1,24 +1,118 @@
-<mat-toolbar color="primary" class="toolbar-title">Cadastro de Estado</mat-toolbar>
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Carros
+    <mat-card-content  style="float: left;">
+        <mat-card-actions>
+            <div [class.dark-theme]="isDarkMode">
+                <button mat-raised-button style="font-size: 10px;"
+                color="primary" 
+                (click)="toggleTheme()"> 
+                <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'nights_stay' }}</mat-icon>
+                Dark Mode 
+                </button>
+            </div>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-toolbar>
 <div class="form-container">
     <mat-card>
         <mat-card-content>
             <form [formGroup]="formGroup">
                 <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>Nome</mat-label>
-                    <input matInput type="text" formControlName="nome">
-                    <mat-error *ngIf="formGroup.get('nome') 
+                    <mat-label >Nome</mat-label>
+                    <input matInput type="text" formControlName="nome"  style="color: white;">
+                    <mat-error  *ngIf="formGroup.get('nome') 
                                    && formGroup.get('nome')?.invalid
                                    && formGroup.get('nome')?.touched">
                         O nome é obrigatorio.
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>Sigla</mat-label>
-                    <input matInput type="text" formControlName="sigla">
-                    <mat-error *ngIf="formGroup.get('sigla') 
-                                   && formGroup.get('sigla')?.invalid
-                                   && formGroup.get('sigla')?.touched">
-                        A sigla é obrigatoria.
+                    <mat-label>Especificações do Carro</mat-label>
+                    <input matInput type="text" formControlName="carroSpec">
+                    <mat-error *ngIf="formGroup.get('carroSpec') 
+                                    && formGroup.get('carroSpec')?.invalid
+                                    && formGroup.get('carroSpec')?.touched">
+                        As especificações do carro são obrigatórias.
+                    </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Versão</mat-label>
+                <input matInput type="text" formControlName="versao">
+                <mat-error *ngIf="formGroup.get('versao') 
+                                && formGroup.get('versao')?.invalid
+                                && formGroup.get('versao')?.touched">
+                    A versão é obrigatória.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Ano</mat-label>
+                <input matInput type="text" formControlName="ano">
+                <mat-error *ngIf="formGroup.get('ano') 
+                                && formGroup.get('ano')?.invalid
+                                && formGroup.get('ano')?.touched">
+                    O ano é obrigatório.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Cor</mat-label>
+                <input matInput type="text" formControlName="cor">
+                <mat-error *ngIf="formGroup.get('cor') 
+                                && formGroup.get('cor')?.invalid
+                                && formGroup.get('cor')?.touched">
+                    A cor é obrigatória.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Características</mat-label>
+                <input matInput type="text" formControlName="caracteristicas">
+                <mat-error *ngIf="formGroup.get('caracteristicas') 
+                                && formGroup.get('caracteristicas')?.invalid
+                                && formGroup.get('caracteristicas')?.touched">
+                    As características são obrigatórias.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Cidade</mat-label>
+                <input matInput type="text" formControlName="cidade">
+                <mat-error *ngIf="formGroup.get('cidade') 
+                                && formGroup.get('cidade')?.invalid
+                                && formGroup.get('cidade')?.touched">
+                    A cidade é obrigatória.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Preço</mat-label>
+                <input matInput type="text" formControlName="preco">
+                <mat-error *ngIf="formGroup.get('preco') 
+                                && formGroup.get('preco')?.invalid
+                                && formGroup.get('preco')?.touched">
+                    O preço é obrigatório e deve ser um número válido.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Kilometragem</mat-label>
+                <input matInput type="text" formControlName="kilometragem">
+                <mat-error *ngIf="formGroup.get('kilometragem') 
+                                && formGroup.get('kilometragem')?.invalid
+                                && formGroup.get('kilometragem')?.touched">
+                    A kilometragem é obrigatória e deve ser um número válido.
+                </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>Selecione um marca</mat-label>
+                    <mat-select formControlName="marcaSelecionado" multiple>
+                        <mat-option *ngFor="let marca of marcas" [value]="marca">{{ marca }}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formGroup.get('marcaSelecionado') 
+                                    && formGroup.get('marcaSelecionado')?.invalid
+                                    && formGroup.get('marcaSelecionado')?.touched">
+                        Selecione um marca válido.
                     </mat-error>
                 </mat-form-field>
             </form>
@@ -38,7 +132,7 @@
                 Excluir 
             </button>
             <button mat-raised-button  
-                    routerLink="/estados"> 
+                    routerLink="/carros"> 
                 Cancelar 
             </button>
 

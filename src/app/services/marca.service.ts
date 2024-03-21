@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Marca } from '../model/marca.model';
+import { Carro } from '../model/carro.model';
 
 @Injectable({
     providedIn: 'root'
@@ -20,7 +21,11 @@ export class MarcaService {
     }
   
     insert(marca: Marca): Observable<Marca> {
-      return this.httpClient.post<Marca>(this.baseUrl, marca);
+      const data = {
+        nome: marca.nome,
+        carros: [Carro]
+      };
+      return this.httpClient.post<Marca>(`http://localhost:8080/marcas/insert`, data);
     }
     
     update(marca:Marca): Observable<Marca> {

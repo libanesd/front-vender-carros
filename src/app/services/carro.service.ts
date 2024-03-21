@@ -20,6 +20,17 @@ export class CarroService {
     }
   
     insert(carro: Carro): Observable<Carro> {
+      const data = {
+        nomeCarro: carro.nomeCarro,
+        carroSpec: carro.carroSpec,
+        versao: carro.versao,
+        ano: carro.ano,
+        cor: carro.cor,
+        caracteristicas: carro.caracteristicas,
+        cidade: carro.cidade,
+        preco: carro.preco,
+        kilometragem: carro.kilometragem,
+      }
       return this.httpClient.post<Carro>(this.baseUrl, carro);
     }
     

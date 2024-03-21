@@ -8,7 +8,17 @@
     margin-bottom: 20px;
 }
 
+.full-color-input {
+    color: white;
+    background-color: dimgray;
+}
+
+.back-proprio {
+    background-color: black;
+}
+
 mat-card {
+    background-color:  #673ab7;
     max-width: 800px;
     margin: 2rem auto;
 }
@@ -29,3 +39,4 @@ button[mat-raised-button] {
 button[mat-raised-button]:not(:last-child) {
     margin-right: 1rem;
 }
+

@@ -14,6 +14,7 @@ export class Carro {
     caracteristicas! : string;
     cidade! : string;
     preco! : number;
+    kilometragem! : number;
     estoque! : number;
     venda! : Venda;
     marca! : Marca;
