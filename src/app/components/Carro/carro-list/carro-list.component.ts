@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { ThemeService } from '../../../theme.service.spec';
 
 
 @Component({
@@ -19,16 +20,22 @@ import { RouterModule } from '@angular/router';
 })
 export class CarroListComponent implements OnInit{
   displayedColumns: string[] = ['id', 'nomeCarro'];
+  isDarkMode: boolean = false;
   carros: Carro[] = [];
 
-  constructor(private carroService: CarroService) {
-
+  constructor(private carroService: CarroService,
+    private themeService: ThemeService) {
+      this.isDarkMode = this.themeService.isDarkMode();
   }
-
-    ngOnInit(): void {
-        this.carroService.findAll().subscribe(data => {
-            this.carros = data;
-        })
-    }
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.themeService.setDarkMode(this.isDarkMode);
+  }
+  
+  ngOnInit(): void {
+      this.carroService.findAll().subscribe(data => {
+          this.carros = data;
+      })
+  }
 
 }

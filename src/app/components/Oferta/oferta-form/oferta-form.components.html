@@ -1,4 +1,17 @@
-<mat-toolbar color="primary" class="toolbar-title">Cadastro de Ofertas</mat-toolbar>
+<mat-toolbar color="primary" class="toolbar-title">Cadastro de Ofertas
+    <mat-card-content  style="float: left;">
+        <mat-card-actions>
+            <div [class.dark-theme]="isDarkMode">
+                <button mat-raised-button style="font-size: 10px;"
+                color="primary" 
+                (click)="toggleTheme()"> 
+                <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'nights_stay' }}</mat-icon>
+                Dark Mode 
+                </button>
+            </div>
+        </mat-card-actions>
+    </mat-card-content>
+</mat-toolbar>
 <div class="form-container">
     <mat-card>
         <mat-card-content>

@@ -7,6 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { ThemeService } from '../../../theme.service.spec';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -18,13 +20,27 @@ import { RouterModule } from '@angular/router';
   styleUrl: './marca-list.component.css'
 })
 export class MarcaListComponent implements OnInit{
+
+  formGroup: FormGroup;
   displayedColumns: string[] =  ['id', 'nome', 'acao'];
+  isDarkMode: boolean = false;
+
   marcas: Marca[] = []
 
-  constructor(private marcaService: MarcaService) {
-    
+  constructor(private formBuilder: FormBuilder,
+    private marcaService: MarcaService,
+    private themeService: ThemeService) {
+
+
+      this.formGroup = formBuilder.group({
+
+      });
   }
 
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.themeService.setDarkMode(this.isDarkMode);
+  }
   ngOnInit(): void {
       this.marcaService.findAll().subscribe(data => {
         console.log(data);

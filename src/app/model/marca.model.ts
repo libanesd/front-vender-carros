@@ -16,6 +16,9 @@ export class Marca{
             throw new Error('Invalid JSON array format for Person');
         }
 
-        return jsonArray.map(json => new Marca(json.id, json.nome, json.carros));
+        const marcaJson = jsonArray.map(json => new Marca(json.id, json.nome, json.carros));
+        console.log(marcaJson);
+
+        return marcaJson;
     }
 }

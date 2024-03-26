@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { ThemeService } from '../../../theme.service.spec';
 
 
 @Component({
@@ -19,12 +20,17 @@ import { RouterModule } from '@angular/router';
 })
 export class CategoriaListComponent implements OnInit{
   displayedColumns: string[] = ['id', 'nomecategoria'];
+  isDarkMode: boolean = false;
   categorias: Categoria[] = [];
 
-  constructor(private categoriaService: CategoriaService) {
+  constructor(private categoriaService: CategoriaService,
+    private themeService: ThemeService) {
 
   }
-
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.themeService.setDarkMode(this.isDarkMode);
+  }
     ngOnInit(): void {
         this.categoriaService.findAll().subscribe(data => {
             this.categorias = data;

@@ -28,6 +28,9 @@ export class CarroFormComponent implements OnInit {
 
   isDarkMode: boolean = false;
   marcas: Marca[] = [];
+  marcasJson: Marca[] = [];
+  instancia: Carro = new Carro();
+  instanciaMarca: Marca | null = null;
   formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
@@ -57,7 +60,9 @@ export class CarroFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.marcaService.findAll().subscribe(marc => {
-      this.marcas = marc;
+      this.marcasJson = marc;
+      console.log(this.marcasJson);
+      this.marcas = Marca.fromJSONArray(marc);
     });
   }
 

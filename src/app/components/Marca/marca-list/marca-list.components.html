@@ -1,41 +1,58 @@
 <mat-toolbar color="primary">
-    <div class="flex-container">
-      <span class="toolbar-title">Controle de Marcas</span>
-      <button mat-fab color="accent" routerLink="/marcas/new">
-        <mat-icon>add</mat-icon>
+  <div class="flex-container">
+    <span class="toolbar-title">Controle de Municípios</span>
+    <div [class.dark-theme]="isDarkMode">
+      <button mat-raised-button style="font-size: 10px;"
+              color="primary" 
+              (click)="toggleTheme()"> 
+              <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'nights_stay' }}</mat-icon>
+              Dark Mode 
       </button>
-    </div>
-  </mat-toolbar>
-  <table mat-table [dataSource]="marcas" class="mat-elevation-z8">
+  </div>
+    <button mat-fab color="accent" routerLink="/marcas/new">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
 
+<table mat-table [dataSource]="marcas" class="mat-elevation-z8">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
   
-      <!-- Position Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> id</th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
+    <!-- Nome Column -->
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
+    </ng-container>
   
-      <!-- Nome Column -->
-      <ng-container matColumnDef="nome">
-        <th mat-header-cell *matHeaderCellDef> Nome </th>
-        <td mat-cell *matCellDef="let element"> {{element.nome}} </td>
-      </ng-container>
-  
-      <ng-container matColumnDef="acao">
-        <th mat-header-cell *matHeaderCellDef> Ação </th>
-        <td mat-cell *matCellDef="let element"> 
-          <button mat-icon-button 
+    <!-- Sigla Column -->
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell *matCellDef="let element"> {{element.estado.nome}} - {{element.estado.sigla}} </td>
+    </ng-container>
+
+    <!-- Acao Column -->
+    <ng-container matColumnDef="acao">
+      <th mat-header-cell *matHeaderCellDef> Ação </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-icon-button 
                 color="primary"
-                routerLink="/marcas/edit/{{element.id}}">
+                routerLink="/municipios/edit/{{element.id}}">
                 <mat-icon>edit</mat-icon>
-          </button>
-          <button mat-icon-button 
-                  color="warn">
-                  <mat-icon>delete</mat-icon>
-          </button>        
-        </td>
-      </ng-container>
-    
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+        </button>
+        <button mat-icon-button 
+                color="warn">
+                <mat-icon>delete</mat-icon>
+        </button>        
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  

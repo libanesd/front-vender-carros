@@ -12,11 +12,13 @@ import { Oferta } from '../../../model/oferta.model';
 import { NgFor } from '@angular/common';
 import { OfertaService } from '../../../services/oferta.service';
 import { Carro } from '../../../model/carro.model';
+import { ThemeService } from '../../../theme.service.spec';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-oferta-form',
   standalone: true,
-  imports: [NgIf,NgFor, ReactiveFormsModule, MatFormFieldModule,
+  imports: [NgIf,NgFor, ReactiveFormsModule, MatFormFieldModule, MatIconModule,
     MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, 
     RouterModule, MatSelectModule],
   templateUrl: './oferta-form.components.html',
@@ -29,7 +31,10 @@ export class OfertaFormComponent{
   categorias: String[] = ['Categoria1', 'Categoria2', 'Categoria3', 'Categoria4'];
   usuarios: String[] = ['Usuario1', 'Usuario2', 'Usuario3', 'Usuario4'];
 
+  isDarkMode: boolean = false;
+
   constructor(private formBuilder: FormBuilder,
+    private themeService: ThemeService,
     private ofertaService: OfertaService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
@@ -44,6 +49,11 @@ export class OfertaFormComponent{
       usuarios: [(oferta && oferta.usuarios) ? oferta.usuarios : ''],
       porcentagemDeDesconto : [(oferta && oferta.porcentagemDeDesconto) ? oferta.porcentagemDeDesconto : '']
     });
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.themeService.setDarkMode(this.isDarkMode);
   }
 
   salvar() {

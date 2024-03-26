@@ -105,15 +105,10 @@
                 </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>Selecione um marca</mat-label>
-                    <mat-select formControlName="marcaSelecionado" multiple>
-                        <mat-option *ngFor="let marca of marcas" [value]="marca">{{ marca }}</mat-option>
+                    <mat-label>Selecione uma marca</mat-label>
+                    <mat-select >
+                        <mat-option *ngFor="let marca of marcasJson" [value]="instanciaMarca">{{ marca.nome}}</mat-option>
                     </mat-select>
-                    <mat-error *ngIf="formGroup.get('marcaSelecionado') 
-                                    && formGroup.get('marcaSelecionado')?.invalid
-                                    && formGroup.get('marcaSelecionado')?.touched">
-                        Selecione um marca válido.
-                    </mat-error>
                 </mat-form-field>
             </form>
         </mat-card-content>

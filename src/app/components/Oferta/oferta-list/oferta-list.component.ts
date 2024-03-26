@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
+import { ThemeService } from '../../../theme.service.spec';
 
 
 @Component({
@@ -21,8 +22,18 @@ export class OfertaListComponent implements OnInit{
   displayedColumns: string[] = ['id', 'nomeoferta'];
   ofertas: Oferta[] = [];
 
-  constructor(private ofertaService: OfertaService) {
+  isDarkMode: boolean = false;
 
+
+  constructor(private ofertaService: OfertaService,
+        private themeService: ThemeService
+                                          ) {
+
+  }
+
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.themeService.setDarkMode(this.isDarkMode);
   }
 
     ngOnInit(): void {

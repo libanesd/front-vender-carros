@@ -11,23 +11,27 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Categoria } from '../../../model/categoria.model';
 import { NgFor } from '@angular/common';
 import { CategoriaService } from '../../../services/categoria.service';
+import { MatIconModule } from '@angular/material/icon';
+import { ThemeService } from '../../../theme.service.spec';
 
 @Component({
   selector: 'app-categoria-form',
   standalone: true,
   imports: [NgIf,NgFor, ReactiveFormsModule, MatFormFieldModule,
     MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule, 
-    RouterModule, MatSelectModule],
+    RouterModule, MatSelectModule, MatIconModule],
   templateUrl: './categoria-form.components.html',
   styleUrl: './categoria-form.components.css'
 })
 export class CategoriaFormComponent{
 
   formGroup: FormGroup;
+  isDarkMode: boolean = false;
   carros : String[] = ['Carro1', 'Carro2', 'Carro3', 'Carro4'];
   ofertas : String[] = ['Oferta1', 'Oferta2', 'Oferta3', 'Oferta4'];
 
   constructor(private formBuilder: FormBuilder,
+    private themeService: ThemeService,
     private categoriaService: CategoriaService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
@@ -42,6 +46,10 @@ export class CategoriaFormComponent{
     });
   }
 
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    this.themeService.setDarkMode(this.isDarkMode);
+  }
   salvar() {
     if (this.formGroup.valid) {
       const categoria = this.formGroup.value;
