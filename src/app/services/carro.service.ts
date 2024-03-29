@@ -30,8 +30,9 @@ export class CarroService {
         cidade: carro.cidade,
         preco: carro.preco,
         kilometragem: carro.kilometragem,
+        marca: carro.marca,
       }
-      return this.httpClient.post<Carro>(this.baseUrl, carro);
+      return this.httpClient.post<Carro>(`http://localhost:8080/carros/insert`, data);
     }
     
     update(carro:Carro): Observable<Carro> {

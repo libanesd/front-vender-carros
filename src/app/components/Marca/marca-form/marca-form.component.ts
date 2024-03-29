@@ -43,14 +43,16 @@ export class MarcaFormComponent implements OnInit{
     this.formGroup = formBuilder.group({
       id: [(marca && marca.id) ? marca.id : null],
       nome: [(marca && marca.nome) ? marca.nome : '', Validators.required],
-      carros: [(marca && marca.carros) ? marca.carros : '']
+      carros: [(marca && marca.carros) ? marca.carros : null]
     });
     this.isDarkMode = this.themeService.isDarkMode();
   }
 
   ngOnInit(): void {
     this.carroService.findAll().subscribe(carr => {
-      this.carros = carr;
+      if(carr !== undefined){
+        this.carros = carr;
+      }
     });
   }
 

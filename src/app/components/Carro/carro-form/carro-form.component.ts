@@ -29,7 +29,7 @@ export class CarroFormComponent implements OnInit {
   isDarkMode: boolean = false;
   marcas: Marca[] = [];
   marcasJson: Marca[] = [];
-  instancia: Carro = new Carro();
+  instancia: Carro | null = null;
   instanciaMarca: Marca | null = null;
   formGroup: FormGroup;
 
@@ -40,11 +40,9 @@ export class CarroFormComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute) {
 
-    const carro: Carro = activatedRoute.snapshot.data['carro']; 
-
     this.formGroup = formBuilder.group({
-      id: [(carro && carro.id) ? carro.id : null],
-      nome: [(carro && carro.nomeCarro) ? carro.nomeCarro : '', Validators.required],
+      id: ['', Validators.required],
+      nomeCarro: ['', Validators.required],
       carroSpec: ['', Validators.required], // campo do tipo string
       versao: ['', Validators.required], // campo do tipo string
       ano: ['', Validators.required], // campo do tipo string
@@ -53,6 +51,7 @@ export class CarroFormComponent implements OnInit {
       cidade: ['', Validators.required], // campo do tipo string
       preco: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]], // campo do tipo float
       kilometragem: ['', [Validators.required, Validators.pattern(/^\d+(\.\d{1,2})?$/)]], // campo do tipo float
+      marca:[null]
     });
 
     this.isDarkMode = this.themeService.isDarkMode();
@@ -63,6 +62,30 @@ export class CarroFormComponent implements OnInit {
       this.marcasJson = marc;
       console.log(this.marcasJson);
       this.marcas = Marca.fromJSONArray(marc);
+      this.initializeForm();
+    });
+  }
+
+  initializeForm() {
+
+    const carro: Carro = this.activatedRoute.snapshot.data['carro'];
+
+    // selecionando a marca
+    const marca = this.marcasJson
+      .find(marca => marca.id === (carro?.marca?.id || null)); 
+
+    this.formGroup = this.formBuilder.group({
+      id: [(carro && carro.id) ? carro.id : null],
+      nomeCarro: [(carro && carro.nomeCarro) ? carro.nomeCarro : null],
+      carroSpec: [(carro && carro.carroSpec) ? carro.carroSpec : null], // campo do tipo string
+      versao: [(carro && carro.versao) ? carro.versao : null], // campo do tipo string
+      ano: [(carro && carro.ano) ? carro.ano : null], // campo do tipo string
+      cor: [(carro && carro.cor) ? carro.cor : null], // campo do tipo string
+      caracteristicas: [(carro && carro.caracteristicas) ? carro.caracteristicas : null], // campo do tipo string
+      cidade: [(carro && carro.cidade) ? carro.cidade : null], // campo do tipo string
+      preco: [(carro && carro.preco) ? carro.preco : null, Validators.pattern(/^\d+(\.\d{1,2})?$/)], // campo do tipo float
+      kilometragem: [(carro && carro.kilometragem) ? carro.kilometragem : null, Validators.pattern(/^\d+(\.\d{1,2})?$/)], // campo do tipo float
+      marca:[marca]
     });
   }
 

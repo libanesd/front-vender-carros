@@ -18,10 +18,10 @@
             <form [formGroup]="formGroup">
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label >Nome</mat-label>
-                    <input matInput type="text" formControlName="nome"  style="color: white;">
-                    <mat-error  *ngIf="formGroup.get('nome') 
-                                   && formGroup.get('nome')?.invalid
-                                   && formGroup.get('nome')?.touched">
+                    <input matInput type="text" formControlName="nomeCarro"  style="color: white;">
+                    <mat-error  *ngIf="formGroup.get('nomeCarro') 
+                                   && formGroup.get('nomeCarro')?.invalid
+                                   && formGroup.get('nomeCarro')?.touched">
                         O nome é obrigatorio.
                     </mat-error>
                 </mat-form-field>
@@ -105,11 +105,16 @@
                 </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="full-width-input">
-                    <mat-label>Selecione uma marca</mat-label>
-                    <mat-select >
-                        <mat-option *ngFor="let marca of marcasJson" [value]="instanciaMarca">{{ marca.nome}}</mat-option>
+                    <mat-label>Marca</mat-label>
+                    <mat-select formControlName="marca">
+                        @for (marca of marcas; track marca.id) {
+                            <mat-option [value]="marca">
+                                {{marca.nome}}
+                            </mat-option>
+                        }
                     </mat-select>
                 </mat-form-field>
+
             </form>
         </mat-card-content>
         <mat-card-actions>

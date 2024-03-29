@@ -27,26 +27,24 @@
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Selecione um carro</mat-label>
-                    <mat-select formControlName="carroSelecionado" multiple>
-                        <mat-option *ngFor="let carro of carros" [value]="carro">{{ carro }}</mat-option>
+                    <mat-select formControlName="carros" multiple>
+                        @for (carro of carros; track carro.id) {
+                            <mat-option [value]="carro">
+                                {{carro.nomeCarro}}
+                            </mat-option>
+                        }
                     </mat-select>
-                    <mat-error *ngIf="formGroup.get('carroSelecionado') 
-                                    && formGroup.get('carroSelecionado')?.invalid
-                                    && formGroup.get('carroSelecionado')?.touched">
-                        Selecione um carro válido.
-                    </mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Selecione um oferta</mat-label>
-                    <mat-select formControlName="ofertaSelecionado" multiple>
-                        <mat-option *ngFor="let oferta of ofertas" [value]="oferta">{{ oferta }}</mat-option>
+                    <mat-select formControlName="ofertas" multiple>
+                        @for (oferta of ofertas; track oferta.id) {
+                            <mat-option [value]="oferta">
+                                {{oferta.nome}}
+                            </mat-option>
+                        }
                     </mat-select>
-                    <mat-error *ngIf="formGroup.get('ofertaSelecionado') 
-                                    && formGroup.get('ofertaSelecionado')?.invalid
-                                    && formGroup.get('ofertaSelecionado')?.touched">
-                        Selecione um carro válido.
-                    </mat-error>
                 </mat-form-field>
             </form>
         </mat-card-content>

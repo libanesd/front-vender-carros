@@ -34,7 +34,8 @@ export class CarroListComponent implements OnInit{
   
   ngOnInit(): void {
       this.carroService.findAll().subscribe(data => {
-          this.carros = data;
+        console.log(data);
+          this.carros = Carro.fromJSONArray(data);
       })
   }
 
