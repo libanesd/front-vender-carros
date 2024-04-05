@@ -14,6 +14,11 @@ import { OfertaService } from '../../../services/oferta.service';
 import { Carro } from '../../../model/carro.model';
 import { ThemeService } from '../../../theme.service.spec';
 import { MatIconModule } from '@angular/material/icon';
+import { Categoria } from '../../../model/categoria.model';
+import { Usuario } from '../../../model/usuario.model';
+import { CarroService } from '../../../services/carro.service';
+import { CategoriaService } from '../../../services/categoria.service';
+import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-oferta-form',
@@ -24,29 +29,99 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './oferta-form.components.html',
   styleUrl: './oferta-form.components.css'
 })
-export class OfertaFormComponent{
+export class OfertaFormComponent implements OnInit{
 
   formGroup: FormGroup;
-  carros: String[] = ['Carro1', 'Carro2', 'Carro3', 'Carro4'];
-  categorias: String[] = ['Categoria1', 'Categoria2', 'Categoria3', 'Categoria4'];
-  usuarios: String[] = ['Usuario1', 'Usuario2', 'Usuario3', 'Usuario4'];
+  carros: Carro[] = [];
+  categorias: Categoria[] = [];
+  usuarios: Usuario[] = [];
 
   isDarkMode: boolean = false;
 
   constructor(private formBuilder: FormBuilder,
     private themeService: ThemeService,
+    private carroService: CarroService,
+    private categoriaService: CategoriaService,
+    private usuarioService: UsuarioService,
     private ofertaService: OfertaService,
     private router: Router,
     private activatedRoute: ActivatedRoute) {
 
-    const oferta: Oferta = activatedRoute.snapshot.data['oferta'];
-
     this.formGroup = formBuilder.group({
+      id: ['', Validators.required],
+      nome: ['', Validators.required],
+      carros: ['', Validators.required],
+      categorias: ['', Validators.required],
+      usuarios: ['', Validators.required],
+      porcentagemDeDesconto : ['', Validators.required]
+    });
+  }
+
+  ngOnInit(): void {
+    this.carroService.findAll().subscribe(carr => {
+      if(carr !== undefined){
+        this.carros = carr;
+        this.formGroup.patchValue({
+          carro: carr
+        });
+      }
+    });
+    this.categoriaService.findAll().subscribe(cat => {
+      if(cat !== undefined){
+        this.categorias = cat;
+        this.formGroup.patchValue({
+          categoria: cat
+        });
+      }
+    });
+    this.usuarioService.findAll().subscribe(usuar => {
+      if(usuar !== undefined){
+        this.usuarios = usuar;
+        this.formGroup.patchValue({
+          usuario: usuar
+        });
+      }
+    });
+    this.initializeForm();
+  }
+
+  initializeForm() {
+
+    const oferta: Oferta = this.activatedRoute.snapshot.data['oferta'];
+
+    if (oferta !== undefined && oferta.carros !== undefined) {
+      oferta.carros.forEach(carr => {
+        const carro = this.carros
+        .find(carro => carro.id === (carr?.id || null));
+        if(carro !== undefined){
+          carr = carro;
+        }
+      });
+    }
+    if (oferta !== undefined && oferta.categorias !== undefined) {
+      oferta.categorias.forEach(categor => {
+        const categoria = this.categorias
+        .find(categoria => categoria.id === (categor?.id || null));
+        if(categoria !== undefined){
+          categor = categoria;
+        }
+      });
+    }
+    if (oferta !== undefined && oferta.categorias !== undefined) {
+      oferta.usuarios.forEach(user => {
+        const usuario = this.usuarios
+        .find(usuario => usuario.id === (user?.id || null));
+        if(usuario !== undefined){
+          user = usuario;
+        }
+      });
+    }
+    this.formGroup = this.formBuilder.group({
       id: [(oferta && oferta.id) ? oferta.id : null],
       nome: [(oferta && oferta.nome) ? oferta.nome : '', Validators.required],
-      carros: [(oferta && oferta.carros) ? oferta.carros : ''],
-      categorias: [(oferta && oferta.categorias) ? oferta.categorias : ''],
-      usuarios: [(oferta && oferta.usuarios) ? oferta.usuarios : ''],
+      carros: [(oferta && oferta.carros) ? oferta.carros : null],
+      categorias: [(oferta && oferta.categorias) ? oferta.categorias : null],
+      usuarios: [(oferta && oferta.usuarios) ? oferta.usuarios : null],
       porcentagemDeDesconto : [(oferta && oferta.porcentagemDeDesconto) ? oferta.porcentagemDeDesconto : '']
     });
   }
@@ -59,6 +134,7 @@ export class OfertaFormComponent{
   salvar() {
     if (this.formGroup.valid) {
       const oferta = this.formGroup.value;
+      console.log(oferta);
       if (oferta.id ==null) {
         this.ofertaService.insert(oferta).subscribe({
           next: (ofertaCadastrado) => {

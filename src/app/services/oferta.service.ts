@@ -20,7 +20,13 @@ export class OfertaService {
     }
   
     insert(oferta: Oferta): Observable<Oferta> {
-      return this.httpClient.post<Oferta>(this.baseUrl, oferta);
+      const data = {
+        nome: oferta.nome,
+        carros: oferta.carros,
+        categorias: oferta.categorias,
+        usuarios: oferta.usuarios
+      };
+      return this.httpClient.post<Oferta>('http://localhost:8080/ofertas/insert', oferta);
     }
     
     update(oferta:Oferta): Observable<Oferta> {

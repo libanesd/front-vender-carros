@@ -38,12 +38,10 @@ export class MarcaFormComponent implements OnInit{
     private router: Router,
     private activatedRoute: ActivatedRoute) {
 
-    const marca: Marca = activatedRoute.snapshot.data['marca'];
-
     this.formGroup = formBuilder.group({
-      id: [(marca && marca.id) ? marca.id : null],
-      nome: [(marca && marca.nome) ? marca.nome : '', Validators.required],
-      carros: [(marca && marca.carros) ? marca.carros : null]
+      id: ['', Validators.required],
+      nome: ['', Validators.required],
+      carros: ['', Validators.required]
     });
     this.isDarkMode = this.themeService.isDarkMode();
   }
@@ -52,7 +50,33 @@ export class MarcaFormComponent implements OnInit{
     this.carroService.findAll().subscribe(carr => {
       if(carr !== undefined){
         this.carros = carr;
+        this.formGroup.patchValue({
+          carro: carr
+        });
       }
+    });
+    this.initializeForm();
+  }
+
+  initializeForm() {
+
+    const marca: Marca = this.activatedRoute.snapshot.data['marca'];
+
+    // selecionando a carro
+    if (marca !== undefined && marca.carros !== undefined) {
+      marca.carros.forEach(carr => {
+        const carro = this.carros
+        .find(carro => carro.id === (carr?.id || null));
+        if(carro !== undefined){
+          carr = carro;
+        }
+      });
+    }
+
+    this.formGroup = this.formBuilder.group({
+      id: [(marca && marca.id) ? marca.id : null],
+      nome: [(marca && marca.nome) ? marca.nome : '', Validators.required],
+      carros: [marca.carros]
     });
   }
 

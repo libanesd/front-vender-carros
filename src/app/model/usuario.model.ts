@@ -12,4 +12,20 @@ export class Usuario{
     email! : string;
     ofertas ! : Oferta[];
     vendas! : Venda[];
+
+    constructor(id: number, nome: string){
+        this.id = id;
+        this.nome = nome;
+    }
+
+    static fromJSONArray(jsonArray: Usuario[]): Usuario[] {
+        if (!jsonArray || !Array.isArray(jsonArray)) {
+            throw new Error('Invalid JSON array format for Person');
+        }
+
+        const usuarioJson = jsonArray.map(json => new Usuario(json.id, json.nome));
+        console.log(usuarioJson);
+
+        return usuarioJson;
+    }
 }

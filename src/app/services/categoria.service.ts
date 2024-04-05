@@ -20,7 +20,11 @@ export class CategoriaService {
     }
   
     insert(categoria: Categoria): Observable<Categoria> {
-      return this.httpClient.post<Categoria>(this.baseUrl, categoria);
+      const data = {
+        nome: categoria.nome,
+        carros: categoria.carros
+      }
+      return this.httpClient.post<Categoria>('http://localhost:8080/categorias/insert', data);
     }
     
     update(categoria:Categoria): Observable<Categoria> {

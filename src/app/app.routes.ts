@@ -11,6 +11,9 @@ import { CategoriaResolver } from './components/Categoria/resolver/categoria-res
 import { OfertaListComponent } from './components/Oferta/oferta-list/oferta-list.component';
 import { OfertaFormComponent } from './components/Oferta/oferta-form/oferta-form.component';
 import { OfertaResolver } from './components/Oferta/resolver/oferta-resolver';
+import { UsuarioListComponent } from './components/Usuario/usuario-list/usuario-list.component';
+import { UsuarioFormComponent } from './components/Usuario/usuario-form/usuario-form.component';
+import { UsuarioResolver } from './components/Usuario/resolver/usuario-resolver';
 
 export const routes: Routes = [
     { path: 'carros', component: CarroListComponent, title: 'Lista de Carros'},
@@ -28,4 +31,8 @@ export const routes: Routes = [
     { path: 'ofertas', component: OfertaListComponent, title: 'Lista de Ofertas'},
     { path: 'ofertas/new', component: OfertaFormComponent, title: 'Nova oferta'},
     { path: 'ofertas/edit/:id', component: OfertaFormComponent, resolve: {Oferta: OfertaResolver}},
+
+    { path: 'usuarios', component: UsuarioListComponent, title: 'Lista de Ofertas'},
+    { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario'},
+    { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {Usuario: UsuarioResolver}},
 ];

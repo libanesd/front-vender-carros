@@ -33,7 +33,7 @@ export class CategoriaListComponent implements OnInit{
   }
     ngOnInit(): void {
         this.categoriaService.findAll().subscribe(data => {
-            this.categorias = data;
+            this.categorias = Categoria.fromJSONArray(data);
         })
     }
 

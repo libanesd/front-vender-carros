@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../../theme.service.spec';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -19,16 +20,22 @@ import { ThemeService } from '../../../theme.service.spec';
   styleUrl: './oferta-list.component.css'
 })
 export class OfertaListComponent implements OnInit{
-  displayedColumns: string[] = ['id', 'nomeoferta'];
+
+  formGroup: FormGroup;
+  displayedColumns: string[] = ['id', 'nome'];
   ofertas: Oferta[] = [];
 
   isDarkMode: boolean = false;
 
 
-  constructor(private ofertaService: OfertaService,
+  constructor(private formBuilder: FormBuilder,
+    private ofertaService: OfertaService,
         private themeService: ThemeService
                                           ) {
 
+    this.formGroup = formBuilder.group({
+
+    });
   }
 
   toggleTheme() {
@@ -38,7 +45,7 @@ export class OfertaListComponent implements OnInit{
 
     ngOnInit(): void {
         this.ofertaService.findAll().subscribe(data => {
-            this.ofertas = data;
+            this.ofertas = Oferta.fromJSONArray(data);
         })
     }
 
