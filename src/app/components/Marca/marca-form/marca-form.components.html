@@ -27,7 +27,7 @@
                 </mat-form-field>
                 <mat-form-field appearance="fill" class="full-width-input">
                     <mat-label>Selecione um carro</mat-label>
-                    <mat-select formControlName="marcas" multiple>
+                    <mat-select  multiple>
                         @for (carro of carros; track carro.id) {
                             <mat-option [value]="carro">
                                 {{carro.nomeCarro}}

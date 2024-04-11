@@ -19,7 +19,7 @@ export class CarroService {
       return this.httpClient.get<Carro>(`${this.baseUrl}/${id}`);
     }
   
-    insert(carro: Carro): Observable<Carro> {
+    insert(carro: Carro,jwt:String): Observable<Carro> {
       const data = {
         nomeCarro: carro.nomeCarro,
         carroSpec: carro.carroSpec,
@@ -32,6 +32,13 @@ export class CarroService {
         kilometragem: carro.kilometragem,
         marca: carro.marca,
       }
+      // const headers = {
+      //   Authorization: `Bearer ${jwt}`,
+      //   'Content-Type': 'application/json',
+      //   'X-Role': 'Admin', // or 'Admin' depending on the role
+      // };
+    
+      // const options = { headers };
       return this.httpClient.post<Carro>(`http://localhost:8080/carros/insert`, data);
     }
     

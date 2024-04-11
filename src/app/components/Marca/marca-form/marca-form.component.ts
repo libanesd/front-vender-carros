@@ -41,7 +41,7 @@ export class MarcaFormComponent implements OnInit{
     this.formGroup = formBuilder.group({
       id: ['', Validators.required],
       nome: ['', Validators.required],
-      carros: ['', Validators.required]
+      carros: ['']
     });
     this.isDarkMode = this.themeService.isDarkMode();
   }
@@ -76,7 +76,7 @@ export class MarcaFormComponent implements OnInit{
     this.formGroup = this.formBuilder.group({
       id: [(marca && marca.id) ? marca.id : null],
       nome: [(marca && marca.nome) ? marca.nome : '', Validators.required],
-      carros: [marca.carros]
+      carros: [(marca && marca.carros) ? marca.carros : null]
     });
   }
 

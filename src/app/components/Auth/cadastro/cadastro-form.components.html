@@ -1,0 +1,90 @@
+<body>
+<div class="header">Cadastro para Clientes</div>
+    <mat-card>
+        <mat-card-content>
+            <form [formGroup]="formGroup">
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label >Nome</mat-label>
+                    <input matInput type="text" formControlName="nome"  style="color: white;">
+                    <mat-error  *ngIf="formGroup.get('nome') 
+                                   && formGroup.get('nome')?.invalid
+                                   && formGroup.get('nome')?.touched">
+                        O nome é obrigatorio.
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" class="full-width-input">
+                    <mat-label>cpf</mat-label>
+                    <input matInput type="text" formControlName="cpf">
+                    <mat-error *ngIf="formGroup.get('cpf') 
+                                    && formGroup.get('cpf')?.invalid
+                                    && formGroup.get('cpf')?.touched">
+                        O CPF do Usuario são obrigatórias.
+                    </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Login</mat-label>
+                <input matInput type="text" formControlName="login">
+                <mat-error *ngIf="formGroup.get('login') 
+                                && formGroup.get('login')?.invalid
+                                && formGroup.get('login')?.touched">
+                    O login é obrigatória.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Endereço</mat-label>
+                <input matInput type="text" formControlName="endereco">
+                <mat-error *ngIf="formGroup.get('endereco') 
+                                && formGroup.get('endereco')?.invalid
+                                && formGroup.get('endereco')?.touched">
+                    O endereço é obrigatório.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>Telefone</mat-label>
+                <input matInput type="text" formControlName="telefone">
+                <mat-error *ngIf="formGroup.get('telefone') 
+                                && formGroup.get('telefone')?.invalid
+                                && formGroup.get('telefone')?.touched">
+                    A Telefone é obrigatória.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>E-Mail</mat-label>
+                <input matInput type="text" formControlName="email">
+                <mat-error *ngIf="formGroup.get('email') 
+                                && formGroup.get('email')?.invalid
+                                && formGroup.get('email')?.touched">
+                    O E-Mail é obrigatórias.
+                </mat-error>
+                </mat-form-field>
+            
+                <mat-form-field appearance="fill" class="full-width-input">
+                <mat-label>senha</mat-label>
+                <input matInput type="text" formControlName="senha">
+                <mat-error *ngIf="formGroup.get('senha') 
+                                && formGroup.get('senha')?.invalid
+                                && formGroup.get('senha')?.touched">
+                    A senha é obrigatória.
+                </mat-error>
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button 
+                    color="white" 
+                    (click)="salvar()"
+                    [disabled]="formGroup.invalid"> 
+                Cadastrar 
+            </button>
+            <button mat-raised-button  
+                    routerLink="/login"> 
+                Cancelar 
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</body>

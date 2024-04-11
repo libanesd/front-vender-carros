@@ -21,9 +21,11 @@ export class Carro {
     categorias! : Categoria[];
     ofertas! : Oferta[];
 
-    constructor(id: number, nome: string){
+    constructor(id: number, nome: string,carroSpec: string,cidade: string){
         this.id = id;
         this.nomeCarro = nome;
+        this.carroSpec = carroSpec;
+        this.cidade = cidade;
     }
 
     static fromJSONArray(jsonArray: Carro[]): Carro[] {
@@ -31,7 +33,7 @@ export class Carro {
             throw new Error('Invalid JSON array format for Person');
         }
 
-        const carroJson = jsonArray.map(json => new Carro(json.id, json.nomeCarro));
+        const carroJson = jsonArray.map(json => new Carro(json.id, json.nomeCarro,json.carroSpec,json.cidade));
         console.log(carroJson);
 
         return carroJson;

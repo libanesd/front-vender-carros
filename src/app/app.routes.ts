@@ -14,6 +14,9 @@ import { OfertaResolver } from './components/Oferta/resolver/oferta-resolver';
 import { UsuarioListComponent } from './components/Usuario/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from './components/Usuario/usuario-form/usuario-form.component';
 import { UsuarioResolver } from './components/Usuario/resolver/usuario-resolver';
+import { LoginFormComponent } from './components/Auth/login/login-form.component';
+import { CadastroFormComponent } from './components/Auth/cadastro/cadastro-form.component';
+import { ProdutosListComponent } from './components/Home/produtos-list/produtos-list.component';
 
 export const routes: Routes = [
     { path: 'carros', component: CarroListComponent, title: 'Lista de Carros'},
@@ -35,4 +38,8 @@ export const routes: Routes = [
     { path: 'usuarios', component: UsuarioListComponent, title: 'Lista de Ofertas'},
     { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario'},
     { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {Usuario: UsuarioResolver}},
+
+    { path: 'login', component: LoginFormComponent, title: 'Login'},
+    { path: 'cadastro', component: CadastroFormComponent, title: 'Cadastro'},
+    { path: 'produtos', component: ProdutosListComponent, title: 'Lista de Produtos'},
 ];

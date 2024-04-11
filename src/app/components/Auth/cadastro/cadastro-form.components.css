@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-image: url('../../../assets/images/background_login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.header {
+    height: 48px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    line-height: 48px;
+}
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 488px); /* 48px header + 440px footer */
+}
+.login-box {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.toolbar-title {
+    flex: 1;
+    text-align: center;
+  }
+
+.full-width-input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.full-color-input {
+    color: white;
+    background-color: dimgray;
+}
+
+.back-proprio {
+    background-color: black;
+}
+
+mat-card {
+    background-color:  #673ab7;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-container {
+    padding: 2rem; 
+}
+
+button[mat-raised-button] {
+    width: 120px;
+}
+
+button[mat-raised-button]:not(:last-child) {
+    margin-right: 1rem;
+}
+
