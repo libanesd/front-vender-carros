@@ -1,42 +1,17 @@
-<body>
-<div class="header">Login</div>
-    <mat-card>
-        <mat-card-content>
-            <form [formGroup]="formGroup">
-                <mat-form-field appearance="fill" class="full-width-input">
-                <mat-label>Login</mat-label>
-                <input matInput type="text" formControlName="login">
-                <mat-error *ngIf="formGroup.get('login') 
-                                && formGroup.get('login')?.invalid
-                                && formGroup.get('login')?.touched">
-                    O login é obrigatória.
-                </mat-error>
-                </mat-form-field>
-
-
-                <mat-form-field appearance="fill" class="full-width-input">
-                <mat-label>senha</mat-label>
-                <input matInput type="text" formControlName="senha">
-                <mat-error *ngIf="formGroup.get('senha') 
-                                && formGroup.get('senha')?.invalid
-                                && formGroup.get('senha')?.touched">
-                    A senha é obrigatória.
-                </mat-error>
-                </mat-form-field>
-            </form>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button 
-                    color="white" 
-                    (click)="entrar()"
-                    [disabled]="formGroup.invalid"> 
-                Entrar 
-            </button>
-            <button mat-raised-button  
-                    routerLink="/cadastro"> 
-                cadastrar 
-            </button>
-        </mat-card-actions>
-    </mat-card>
-<div class="footer">Footer</div>
-</body>
+<div class="login-container">
+    <div class="login-box">
+        <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
+        <h2 class="login-title">Bem-vindo</h2>
+        <form [formGroup]="formGroup" (ngSubmit)="entrar()">
+            <mat-form-field class="login-input">
+                <input matInput placeholder="Email" formControlName="login" required>
+                <mat-error *ngIf="formGroup.get('login')!.hasError('required')">O email é obrigatório</mat-error>
+            </mat-form-field>
+            <mat-form-field class="login-input">
+                <input matInput type="password" placeholder="Senha" formControlName="senha" required>
+                <mat-error *ngIf="formGroup.get('senha')!.hasError('required')">A senha é obrigatória</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="login-button" color="primary" type="submit">Login</button>
+        </form>
+    </div>
+</div>

@@ -1,6 +1,19 @@
+<mat-toolbar color="primary">
+  <div class="flex-container">
+    <span class="toolbar-title">Carrinho</span>
+    <div [class.dark-theme]="isDarkMode">
+      <button mat-raised-button style="font-size: 10px;"
+              color="primary" 
+              (click)="toggleTheme()"> 
+              <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'nights_stay' }}</mat-icon>
+              Dark Mode 
+      </button>
+  </div>
+  </div>
+</mat-toolbar>
 <div class="header">
   <span >Total de Carros:  {{ carros.length }}</span>
-  <input type="text" placeholder="Pesquisar...">
+    <input type="text" placeholder="Pesquisar...">
 </div>
 <mat-toolbar layout="row" class="md-hue-3">
   <div class="md-toolbar-tools">

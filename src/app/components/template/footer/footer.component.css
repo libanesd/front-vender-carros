@@ -1,0 +1,14 @@
+.toolbar-title {
+    flex: 1;
+    position: relative;
+    text-align: center;
+    font-size: small;
+}
+
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Opcional: garantir que fique acima de outros elementos */
+}
