@@ -1,0 +1,14 @@
+npm install --save @angular/material @angular/cdk @angular/animations
+npm install --save angular/material2-builds angular/cdk-builds angular/animations-builds
+npm install --save @angular/material
+ng install @angular-sass
+ng add @angular/material
+ng build --prod
+ng set defaults.styleExt scss
+ng config schematics.@schematics/angular:component.styleext scss
+ng build 
+ng generate service theme
+ng generate component theme-toggle
+npm install @angular/cdk
+npm install @angular/material
+ng serve
