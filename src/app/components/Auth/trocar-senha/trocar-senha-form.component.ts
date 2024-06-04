@@ -21,10 +21,10 @@ import { AuthService } from "../../../services/auth.service";
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
       MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
       RouterModule],
-    templateUrl: './login-form.components.html',
-    styleUrl: './login-form.components.css'
+    templateUrl: './trocar-senha-form.components.html',
+    styleUrl: './trocar-senha-form.components.css'
   })
-export class LoginFormComponent implements OnInit {
+export class TrocarSenhaFormComponent implements OnInit {
 
     formGroup!: FormGroup;
 
@@ -35,24 +35,14 @@ export class LoginFormComponent implements OnInit {
 
     ngOnInit(): void {
       this.formGroup = this.formBuilder.group({
-        login: ['', [Validators.required, Validators.minLength(3)]],
-        senha: ['', [Validators.required, Validators.minLength(3)]]
+        senha: ['', [Validators.required, Validators.minLength(3)]],
+        validadorSenha: ['', [Validators.required, Validators.minLength(3)]]
       });
     }
     entrar(){
       if (this.formGroup.valid) {
         const login = this.formGroup.get('login')!.value;
-        const senha = this.formGroup.get('senha')!.value;
-        this.authService.loginDois(login, senha).subscribe({
-          next: (resp) => {
-            // redirecionar para a página principal
-            this.router.navigateByUrl('/produtos');
-          },
-          error: (err) => {
-            console.log(err);
-            this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
-          }
-        });
+        this.authService.gerarCodigo(login)
       } else {
         this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
       }

@@ -16,13 +16,13 @@ import { Usuario } from "../../../model/usuario.model";
 import { AuthService } from "../../../services/auth.service";
 
 @Component({
-    selector: 'app-login-form',
+    selector: 'app-login-codigo-form',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
       MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
       RouterModule],
-    templateUrl: './login-form.components.html',
-    styleUrl: './login-form.components.css'
+    templateUrl: './login-codigo-form.components.html',
+    styleUrl: './login-codigo-form.components.css'
   })
 export class LoginFormComponent implements OnInit {
 
@@ -35,15 +35,13 @@ export class LoginFormComponent implements OnInit {
 
     ngOnInit(): void {
       this.formGroup = this.formBuilder.group({
-        login: ['', [Validators.required, Validators.minLength(3)]],
-        senha: ['', [Validators.required, Validators.minLength(3)]]
+        codigo: ['', [Validators.required, Validators.minLength(3)]]
       });
     }
     entrar(){
       if (this.formGroup.valid) {
-        const login = this.formGroup.get('login')!.value;
-        const senha = this.formGroup.get('senha')!.value;
-        this.authService.loginDois(login, senha).subscribe({
+        const codigo = this.formGroup.get('codigo')!.value;
+        this.authService.validarCodigo(codigo).subscribe({
           next: (resp) => {
             // redirecionar para a página principal
             this.router.navigateByUrl('/produtos');
@@ -64,24 +62,4 @@ export class LoginFormComponent implements OnInit {
         horizontalPosition: "center" // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
       });
     }
-
-
-    
-    // entrar(){
-    //     if (this.formGroup.valid) {
-    //         const usuario = this.formGroup.value;
-    //         this.authService.login(usuario).subscribe({
-    //           next: (usuarioCadastrado) => {
-    //             console.log(usuarioCadastrado);
-    //             this.router.navigateByUrl('/produtos');
-    //           },
-    //           error: (err) => {
-    //             console.log(err);
-    //             this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
-    //           }
-    //         });
-    //       }else {
-    //         this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
-    //       }
-    // }
 }

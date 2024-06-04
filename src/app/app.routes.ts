@@ -20,6 +20,12 @@ import { ProdutosListComponent } from './components/Home/produtos-list/produtos-
 import { CarrinhoListComponent } from './components/Carrinho/carrinho-list/carrinho-list.component';
 import { UserTemplateComponent } from './components/template/user-template/user-template.component';
 import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
+import { RecuperarSenhaFormComponent } from './components/Auth/recuperar-senha/recuperar-senha-form.component';
+import { LogFormComponent } from './components/Venda/venda-form/venda-form.component';
+import { CarrinFormComponent } from './components/Venda/venda-list/venda-list.component';
+import { DetalheDoProdutoFormComponent } from './components/Detalhes-Do-Produto/detalhe-do-produto-form/detalhe-do-produto-form.component';
+import { AdministrarPerfilFormComponent } from './components/Administrar-Perfil/administrar-perfil/administrar-perfil-form.component';
+import { SobreFormComponent } from './components/Sobre/sobre-form/sobre-form.component';
 
 export const routes: Routes = [
     { 
@@ -33,6 +39,13 @@ export const routes: Routes = [
             { path: 'cadastro', component: CadastroFormComponent, title: 'Cadastro'},
             { path: 'produtos', component: ProdutosListComponent, title: 'Lista de Produtos'},
             { path: 'carrinho', component: CarrinhoListComponent, title: 'Carrinho'},
+            { path: 'recuperar-senha', component: RecuperarSenhaFormComponent, title: 'Recuperar Senha'},
+            { path: 'teste', component: LogFormComponent, title: 'Home'},
+            { path: 'teste2', component: CarrinFormComponent, title: 'Carrinhoo'},
+            { path: 'detalhe-do-produto', component: DetalheDoProdutoFormComponent, title: 'Detalhe do protudo'},
+            { path: 'administrar-perfil', component: AdministrarPerfilFormComponent, title: 'Administrar Perfil'},
+            { path: 'sobre', component: SobreFormComponent, title: 'Sobre'},
+
         ]
 
     },
@@ -44,6 +57,7 @@ export const routes: Routes = [
             {path: '', pathMatch: 'full', redirectTo: 'login'},
 
             { path: 'login', component: LoginFormComponent, title: 'Login'},
+            { path: 'recuperar-senha', component: RecuperarSenhaFormComponent, title: 'Recuperar Senha'},
         
             { path: 'carros', component: CarroListComponent, title: 'Lista de Carros'},
             { path: 'carros/new', component: CarroFormComponent, title: 'Novo Carro'},

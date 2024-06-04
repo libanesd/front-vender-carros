@@ -1,4 +1,4 @@
-npm install --save @angular/material @angular/cdk @angular/animations
+npm install --save @angular/material @angular/cdk
 npm install --save angular/material2-builds angular/cdk-builds angular/animations-builds
 npm install --save @angular/material
 ng install @angular-sass

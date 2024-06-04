@@ -2,24 +2,13 @@
     <div class="login-box">
         <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
         <h2 class="login-title">Bem-vindo</h2>
+        <h4 class="login-title">digite o email para receber o codigo</h4>
         <form [formGroup]="formGroup" (ngSubmit)="entrar()">
             <mat-form-field class="login-input">
                 <input matInput placeholder="Email" formControlName="login" required>
                 <mat-error *ngIf="formGroup.get('login')!.hasError('required')">O email é obrigatório</mat-error>
             </mat-form-field>
-            <mat-form-field class="login-input">
-                <input matInput type="password" placeholder="Senha" formControlName="senha" required>
-                <mat-error *ngIf="formGroup.get('senha')!.hasError('required')">A senha é obrigatória</mat-error>
-            </mat-form-field>
             <button mat-raised-button class="login-button" color="primary" type="submit">Login</button>
-            <br/>
-            <br/>
-            <br/>
-            <a routerLink="/recuperar-senha">esqueci minha senha</a>
-            <br/>
-            <br/>
-            <br/>
-            <a style="color: purple;" routerLink="/sobre">Sobre o nosso site!</a>
         </form>
     </div>
 </div>

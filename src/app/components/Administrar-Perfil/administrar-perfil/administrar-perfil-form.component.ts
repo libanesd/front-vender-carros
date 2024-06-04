@@ -22,10 +22,10 @@ import { AuthService } from "../../../services/auth.service";
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
       MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
       RouterModule],
-    templateUrl: './venda-list.components.html',
-    styleUrl: './venda-list.component.css'
+    templateUrl: './administrar-perfil-form.components.html',
+    styleUrl: './administrar-perfil-form.components.css'
   })
-export class CarrinFormComponent{
+export class AdministrarPerfilFormComponent{
 
     formGroup!: FormGroup;
 

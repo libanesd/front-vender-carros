@@ -35,6 +35,28 @@ export class AuthService {
   setUsuarioLogado(usuario: UsuarioLogado): void {
     this.localStorageService.setItem(this.usuarioLogadoKey, usuario);
   }
+  validarCodigo(codigo: string): Observable<any> {
+    return this.http.post(`http://localhost:8080/auth/validar-codigo`, codigo, {observe: 'response'}).pipe(
+      tap((res: any) => {
+        const authToken = res.headers.get('Authorization') ?? 'nada';
+        console.log(authToken);
+        if (authToken) {
+          this.setToken(authToken);
+          const usuarioLogado = res.body;
+          console.log(usuarioLogado);
+          if (usuarioLogado) {
+            this.setUsuarioLogado(usuarioLogado);
+            this.usuarioLogadoSubject.next(usuarioLogado);
+          }
+        }else{
+          console.log('não tem login');
+        }
+      })
+    );
+  }
+  gerarCodigo(email: string):void {
+    this.http.post<String>(`http://localhost:8080/auth/gerar-codigo`, email);
+  }
   loginDois(email: string, senha: string): Observable<any> {
     const params = {
       login: email,
@@ -45,7 +67,8 @@ export class AuthService {
     //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
     return this.http.post(`${this.baseURL}`, params, {observe: 'response'}).pipe(
       tap((res: any) => {
-        const authToken = res.headers.get('Authorization') ?? '';
+        const authToken = res.headers.get('Authorization') ?? 'nada';
+        console.log(authToken);
         if (authToken) {
           this.setToken(authToken);
           const usuarioLogado = res.body;
@@ -54,6 +77,8 @@ export class AuthService {
             this.setUsuarioLogado(usuarioLogado);
             this.usuarioLogadoSubject.next(usuarioLogado);
           }
+        }else{
+          console.log('não tem login');
         }
       })
     );
@@ -70,6 +95,7 @@ export class AuthService {
       this.localStorageService.setItem(this.tokenKey, token);
     }
   
+    
     getUsuarioLogado() {
       return this.usuarioLogadoSubject.asObservable();
     }

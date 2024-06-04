@@ -1,0 +1,13 @@
+<div class="login-container">
+    <div class="login-box">
+        <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
+        <h2 class="login-title">Bem-vindo</h2>
+        <form [formGroup]="formGroup" (ngSubmit)="entrar()">
+            <mat-form-field class="login-input">
+                <input matInput placeholder="Codigo" formControlName="codigo" required>
+                <mat-error *ngIf="formGroup.get('codigo')!.hasError('required')">O email é obrigatório</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="login-button" color="primary" type="submit">Login</button>
+        </form>
+    </div>
+</div>

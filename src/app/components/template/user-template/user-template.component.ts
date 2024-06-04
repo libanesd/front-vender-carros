@@ -19,8 +19,14 @@ export class UserTemplateComponent{
   constructor(private router: Router) {
     this.router.events.subscribe((event) => {
           if (event instanceof NavigationEnd) {
+            if(this.router.url === '/login'){
               this.isLoginRoute = this.router.url === '/login';
               console.log(this.isLoginRoute);
+            }
+            if(this.router.url === '/sobre'){
+              this.isLoginRoute = this.router.url === '/sobre';
+              console.log(this.isLoginRoute);
+            }
           }
       });
   }
