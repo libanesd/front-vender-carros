@@ -16,6 +16,9 @@ import { Usuario } from "../../../model/usuario.model";
 import { AuthService } from "../../../services/auth.service";
 import { RouterLink } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
+import { ButtonModule } from 'primeng/button';
+import { TagModule } from 'primeng/tag';
+
 import { CarouselCaptionComponent,
   CarouselComponent,
   CarouselControlComponent,
@@ -28,7 +31,7 @@ import { CarouselCaptionComponent,
 @Component({
     selector: 'recuperar-senha-form',
     standalone: true,
-    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,CarouselModule,
+    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,CarouselModule,ButtonModule,
       ThemeDirective, CarouselComponent, CarouselIndicatorsComponent, CarouselInnerComponent, NgFor, CarouselItemComponent, CarouselCaptionComponent, CarouselControlComponent, RouterLink,
       MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
       RouterModule],
@@ -39,6 +42,7 @@ export class LogFormComponent implements OnInit{
 
     formGroup!: FormGroup;
     slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
+    responsiveOptions: any[] | undefined;
 
     constructor(private formBuilder: FormBuilder,
         private authService: AuthService,
@@ -49,20 +53,14 @@ export class LogFormComponent implements OnInit{
           this.slides[0] = {
             id: 0,
             src: './assets/images/carros/carroRapido1.jpg',
-            title: 'First slide',
-            subtitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
           };
           this.slides[1] = {
             id: 1,
             src: './assets/images/carros/carroRapido2.jpg',
-            title: 'Second slide',
-            subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
           };
           this.slides[2] = {
             id: 2,
             src: './assets/images/carros/carroRapido3.jpg',
-            title: 'Third slide',
-            subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
           };
         }
 }
