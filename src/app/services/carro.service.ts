@@ -7,6 +7,8 @@ import { Carro } from '../model/carro.model';
     providedIn: 'root'
   })
 export class CarroService {
+  
+    private carro!: Carro;
     private baseUrl = 'http://localhost:8080/carros';
 
     constructor(private httpClient: HttpClient) {  }
@@ -48,5 +50,13 @@ export class CarroService {
   
     delete(carro: Carro): Observable<any> {
       return this.httpClient.delete<any>(`${this.baseUrl}/${carro.id}`);
+    }
+
+    setCarro(carro: Carro) {
+      this.carro = carro;
+    }
+  
+    getCarro() {
+      return this.carro;
     }
 }

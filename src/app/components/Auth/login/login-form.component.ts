@@ -39,20 +39,16 @@ export class LoginFormComponent implements OnInit {
         senha: ['', [Validators.required, Validators.minLength(3)]]
       });
     }
-    entrar(){
+    async entrar(){
       if (this.formGroup.valid) {
         const login = this.formGroup.get('login')!.value;
         const senha = this.formGroup.get('senha')!.value;
-        this.authService.loginDois(login, senha).subscribe({
-          next: (resp) => {
-            // redirecionar para a página principal
-            this.router.navigateByUrl('/produtos');
-          },
-          error: (err) => {
-            console.log(err);
-            this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
-          }
-        });
+        try{
+          const result = await this.authService.loginDois(login, senha);
+          console.log('Code generated successfully', result);
+        } catch (error) {
+          console.error('Error generating code', error);
+        }
       } else {
         this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
       }

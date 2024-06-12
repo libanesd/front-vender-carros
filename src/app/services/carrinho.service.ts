@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import { ItemCarrinho } from '../model/itemcarrinho.model';
+import { Carro } from '../model/carro.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarrinhoService {
 
+  private carroCarrinho!: Carro
   private carrinhoSubject = new BehaviorSubject<ItemCarrinho[]>([]);
   carrinho$ = this.carrinhoSubject.asObservable();
 
@@ -50,5 +52,13 @@ export class CarrinhoService {
 
   private atualizarArmazenamentoLocal(): void {
     localStorage.setItem('carrinho', JSON.stringify(this.carrinhoSubject.value));
+  }
+
+  setCarroCarrinho(carroCarrinho: Carro) {
+    this.carroCarrinho = carroCarrinho;
+  }
+
+  getCarroCarrinho() {
+    return this.carroCarrinho;
   }
 }

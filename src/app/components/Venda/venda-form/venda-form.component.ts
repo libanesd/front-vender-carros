@@ -26,12 +26,15 @@ import { CarouselCaptionComponent,
   CarouselInnerComponent,
   CarouselItemComponent,
   ThemeDirective } from '@coreui/angular';
+import { Carro } from "../../../model/carro.model";
+import { CarroService } from "../../../services/carro.service";
+import { CarrinhoService } from "../../../services/carrinho.service";
 
 
 @Component({
     selector: 'recuperar-senha-form',
     standalone: true,
-    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,CarouselModule,ButtonModule,
+    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,CarouselModule,ButtonModule,TagModule,
       ThemeDirective, CarouselComponent, CarouselIndicatorsComponent, CarouselInnerComponent, NgFor, CarouselItemComponent, CarouselCaptionComponent, CarouselControlComponent, RouterLink,
       MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
       RouterModule],
@@ -41,26 +44,45 @@ import { CarouselCaptionComponent,
 export class LogFormComponent implements OnInit{
 
     formGroup!: FormGroup;
+    carros!: Carro[] ;
     slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
     responsiveOptions: any[] | undefined;
 
     constructor(private formBuilder: FormBuilder,
+      private carrinhoService: CarrinhoService,
+      private carroService: CarroService,
         private authService: AuthService,
         private router: Router,
         private snackBar: MatSnackBar) {}
 
-        ngOnInit(): void {
-          this.slides[0] = {
-            id: 0,
-            src: './assets/images/carros/carroRapido1.jpg',
-          };
-          this.slides[1] = {
-            id: 1,
-            src: './assets/images/carros/carroRapido2.jpg',
-          };
-          this.slides[2] = {
-            id: 2,
-            src: './assets/images/carros/carroRapido3.jpg',
-          };
-        }
+    ngOnInit(): void {
+      this.carroService.findAll().subscribe(data => {
+        console.log(data);
+          this.carros = Carro.fromJSONArray(data);
+      })
+
+      this.slides[0] = {
+        id: 0,
+        src: './assets/images/carros/carroRapido1.jpg',
+      };
+      this.slides[1] = {
+        id: 1,
+        src: './assets/images/carros/carroRapido2.jpg',
+      };
+      this.slides[2] = {
+        id: 2,
+        src: './assets/images/carros/carroRapido3.jpg',
+      };
+    }
+
+    adicionarCarroEmCarrinho(produto: Carro){
+      console.log(produto);
+      this.carrinhoService.setCarroCarrinho(produto);
+      this.router.navigateByUrl('/teste2');
+    }
+    verDetalhesCarro(produto: Carro){
+      console.log(produto);
+      this.carroService.setCarro(produto);
+      this.router.navigateByUrl('/detalhe-do-produto');
+    }
 }

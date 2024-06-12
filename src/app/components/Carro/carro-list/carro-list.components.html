@@ -2,17 +2,15 @@
   <div class="flex-container">
     <span class="toolbar-title">Controle de Carros</span>
     <div [class.dark-theme]="isDarkMode">
-      <button mat-raised-button style="font-size: 10px;"
-              color="primary" 
-              (click)="toggleTheme()"> 
-              <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'nights_stay' }}</mat-icon>
-              Dark Mode 
-      </button>
   </div>
     <button mat-fab color="accent" routerLink="/admin/carros/new">
       <mat-icon>add</mat-icon>
     </button>
+    <button mat-fab color="red" routerLink="/admin/carros/carro-inserir-imagem">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
+  
 </mat-toolbar>
 
 <table mat-table [dataSource]="carros" class="mat-elevation-z8">

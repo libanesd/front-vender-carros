@@ -35,14 +35,28 @@ export class TrocarSenhaFormComponent implements OnInit {
 
     ngOnInit(): void {
       this.formGroup = this.formBuilder.group({
+        codigo: ['', [Validators.required, Validators.minLength(3)]],
         senha: ['', [Validators.required, Validators.minLength(3)]],
-        validadorSenha: ['', [Validators.required, Validators.minLength(3)]]
+        repetirSenha: ['', [Validators.required, Validators.minLength(3)]]
       });
     }
-    entrar(){
+    async enviarCodigoSenha(){
       if (this.formGroup.valid) {
-        const login = this.formGroup.get('login')!.value;
-        this.authService.gerarCodigo(login)
+        const codigo = this.formGroup.get('codigo')!.value;
+        const senha = this.formGroup.get('senha')!.value;
+        const repetirSenha = this.formGroup.get('repetirSenha')!.value;
+        console.log(codigo);
+        console.log(senha);
+        console.log(repetirSenha);
+        if(senha == repetirSenha){
+          try{
+            const result = await this.authService.validarCodigo(codigo,senha,repetirSenha);
+            console.log('Code generated successfully', result);
+          } 
+          catch(error){
+            console.error('Error generating code', error);
+          }
+        }
       } else {
         this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
       }
@@ -54,24 +68,4 @@ export class TrocarSenhaFormComponent implements OnInit {
         horizontalPosition: "center" // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
       });
     }
-
-
-    
-    // entrar(){
-    //     if (this.formGroup.valid) {
-    //         const usuario = this.formGroup.value;
-    //         this.authService.login(usuario).subscribe({
-    //           next: (usuarioCadastrado) => {
-    //             console.log(usuarioCadastrado);
-    //             this.router.navigateByUrl('/produtos');
-    //           },
-    //           error: (err) => {
-    //             console.log(err);
-    //             this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
-    //           }
-    //         });
-    //       }else {
-    //         this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
-    //       }
-    // }
 }

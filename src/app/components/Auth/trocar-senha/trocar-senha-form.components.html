@@ -2,16 +2,21 @@
     <div class="login-box">
         <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
         <h2 class="login-title">Bem-vindo</h2>
-        <form [formGroup]="formGroup" (ngSubmit)="entrar()">
+        <h1 class="login-title">Insira o Codigo e digite uma nova senha</h1>
+        <form [formGroup]="formGroup" (ngSubmit)="enviarCodigoSenha()">
             <mat-form-field class="login-input">
-                <input matInput placeholder="Email" formControlName="login" required>
-                <mat-error *ngIf="formGroup.get('login')!.hasError('required')">O email é obrigatório</mat-error>
+                <input matInput placeholder="Codigo" formControlName="codigo" required>
+                <mat-error *ngIf="formGroup.get('codigo')!.hasError('required')">O codigo é obrigatório</mat-error>
             </mat-form-field>
             <mat-form-field class="login-input">
                 <input matInput type="password" placeholder="Senha" formControlName="senha" required>
                 <mat-error *ngIf="formGroup.get('senha')!.hasError('required')">A senha é obrigatória</mat-error>
             </mat-form-field>
-            <button mat-raised-button class="login-button" color="primary" type="submit">Login</button>
+            <mat-form-field class="login-input">
+                <input matInput type="password" placeholder="Repetir Senha" formControlName="repetirSenha" required>
+                <mat-error *ngIf="formGroup.get('repetirSenha')!.hasError('required')">Repetir senha é obrigatória</mat-error>
+            </mat-form-field>
+            <button mat-raised-button class="login-button" color="primary" type="submit">Atualizar Senha</button>
         </form>
     </div>
 </div>

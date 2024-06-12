@@ -27,6 +27,14 @@ export class UserTemplateComponent{
               this.isLoginRoute = this.router.url === '/sobre';
               console.log(this.isLoginRoute);
             }
+            if(this.router.url === '/recuperar-senha'){
+              this.isLoginRoute = this.router.url === '/recuperar-senha';
+              console.log(this.isLoginRoute);
+            }
+            if(this.router.url === '/trocar-de-senha'){
+              this.isLoginRoute = this.router.url === '/trocar-de-senha';
+              console.log(this.isLoginRoute);
+            }
           }
       });
   }

@@ -26,6 +26,8 @@ import { CarrinFormComponent } from './components/Venda/venda-list/venda-list.co
 import { DetalheDoProdutoFormComponent } from './components/Detalhes-Do-Produto/detalhe-do-produto-form/detalhe-do-produto-form.component';
 import { AdministrarPerfilFormComponent } from './components/Administrar-Perfil/administrar-perfil/administrar-perfil-form.component';
 import { SobreFormComponent } from './components/Sobre/sobre-form/sobre-form.component';
+import { TrocarSenhaFormComponent } from './components/Auth/trocar-senha/trocar-senha-form.component';
+import { CarroInserirImagemFormComponent } from './components/Carro/carro-inserir-imagem-form/carro-inserir-imagem-form.component';
 
 export const routes: Routes = [
     { 
@@ -40,6 +42,7 @@ export const routes: Routes = [
             { path: 'produtos', component: ProdutosListComponent, title: 'Lista de Produtos'},
             { path: 'carrinho', component: CarrinhoListComponent, title: 'Carrinho'},
             { path: 'recuperar-senha', component: RecuperarSenhaFormComponent, title: 'Recuperar Senha'},
+            { path: 'trocar-de-senha', component: TrocarSenhaFormComponent, title: 'Trocar Senha'},
             { path: 'teste', component: LogFormComponent, title: 'Home'},
             { path: 'teste2', component: CarrinFormComponent, title: 'Carrinhoo'},
             { path: 'detalhe-do-produto', component: DetalheDoProdutoFormComponent, title: 'Detalhe do protudo'},
@@ -61,6 +64,7 @@ export const routes: Routes = [
         
             { path: 'carros', component: CarroListComponent, title: 'Lista de Carros'},
             { path: 'carros/new', component: CarroFormComponent, title: 'Novo Carro'},
+            { path: 'carros/carro-inserir-imagem', component: CarroInserirImagemFormComponent, title: 'Nova imagem'},
             { path: 'carros/edit/:id', component: CarroFormComponent, resolve: {Carro: CarroResolver}},
 
             { path: 'categorias', component: CategoriaListComponent, title: 'Lista de categorias'},

@@ -14,6 +14,9 @@ import { ThemeService } from "../../../theme.service.spec";
 import { UsuarioService } from "../../../services/usuario.service";
 import { Usuario } from "../../../model/usuario.model";
 import { AuthService } from "../../../services/auth.service";
+import { CarroService } from "../../../services/carro.service";
+import { Carro } from "../../../model/carro.model";
+import { CarrinhoService } from "../../../services/carrinho.service";
 
 
 @Component({
@@ -25,13 +28,22 @@ import { AuthService } from "../../../services/auth.service";
     templateUrl: './venda-list.components.html',
     styleUrl: './venda-list.component.css'
   })
-export class CarrinFormComponent{
+export class CarrinFormComponent implements OnInit{
+
+    carro!: Carro;
 
     formGroup!: FormGroup;
 
     constructor(private formBuilder: FormBuilder,
+      private carrinhoService: CarrinhoService,
         private authService: AuthService,
         private router: Router,
-        private snackBar: MatSnackBar) {}
+        private snackBar: MatSnackBar) {
+
+        }
+      ngOnInit(): void {
+        this.carro = this.carrinhoService.getCarroCarrinho();
+        console.log(this.carro)
+      }
 
 }

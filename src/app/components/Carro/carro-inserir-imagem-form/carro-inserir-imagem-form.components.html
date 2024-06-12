@@ -1,0 +1,33 @@
+<form [formGroup]="formGroup" >
+<div class="login-container">
+    <div class="login-box">
+        <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
+        <h2 class="login-title">Bem-vindo</h2>
+        <h1 class="login-title">Insira Uma imagem para o carro</h1>
+            <mat-form-field class="login-input">
+                <input matInput placeholder="id Carro" formControlName="id" required>
+                <mat-error *ngIf="formGroup.get('id')!.hasError('required')">O codigo é obrigatório</mat-error>
+            </mat-form-field>
+            <mat-form-field class="login-input">
+                <input matInput placeholder="Literalmente nome da imagem" formControlName="nomeImagem" required>
+                <mat-error *ngIf="formGroup.get('nomeImagem')!.hasError('required')">A senha é obrigatória</mat-error>
+            </mat-form-field>
+            <p-fileUpload 
+                name="demo[]" 
+                url="{http://localhost:8080/usuariologado/upload/imagem/2}"
+                [multiple]="false" 
+                (onUpload)="uploadDaImagem($event)" 
+                accept="image/*" 
+                maxFileSize="1000000">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">
+                                {{ file.name }} - {{ file.size }} bytes
+                            </li>
+                        </ul>
+                    </ng-template>
+            </p-fileUpload>
+    </div>
+</div>
+    
+</form>

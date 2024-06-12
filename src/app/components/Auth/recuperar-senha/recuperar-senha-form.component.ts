@@ -14,11 +14,12 @@ import { ThemeService } from "../../../theme.service.spec";
 import { UsuarioService } from "../../../services/usuario.service";
 import { Usuario } from "../../../model/usuario.model";
 import { AuthService } from "../../../services/auth.service";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
     selector: 'recuperar-senha-form',
     standalone: true,
-    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,
+    imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,MatProgressSpinnerModule,
       MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
       RouterModule],
     templateUrl: './recuperar-senha-form.components.html',
@@ -26,7 +27,10 @@ import { AuthService } from "../../../services/auth.service";
   })
 export class RecuperarSenhaFormComponent implements OnInit {
 
+    isLoading = false;
+
     formGroup!: FormGroup;
+    response: any;
 
     constructor(private formBuilder: FormBuilder,
         private authService: AuthService,
@@ -38,12 +42,18 @@ export class RecuperarSenhaFormComponent implements OnInit {
         login: ['', [Validators.required, Validators.minLength(3)]],
       });
     }
-    entrar(){
-      if (this.formGroup.valid) {
-        const login = this.formGroup.get('login')!.value;
-        this.authService.gerarCodigo(login);
-      } else {
-        this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
+    async enviarCodigo(){
+      const login = this.formGroup.get('login')!.value;
+      console.log(login);
+      try {
+        this.isLoading = true;
+        console.log(this.isLoading);
+        const result = await this.authService.gerarCodigo(login);
+        this.isLoading = false;
+        console.log(this.isLoading);
+        console.log('Code generated successfully', result);
+      } catch (error) {
+        console.error('Error generating code', error);
       }
     }
     showSnackbarTopPosition(content: any, action: any, duration: any) {

@@ -102,7 +102,7 @@ export class CarroFormComponent implements OnInit {
       if (carro.id ==null) {
         this.carroService.insert(carro,this.jwt).subscribe({
           next: (carroCadastrado) => {
-            this.router.navigateByUrl('/carros');
+            this.router.navigateByUrl('/admin/carros');
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));

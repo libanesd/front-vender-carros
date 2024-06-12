@@ -1,23 +1,34 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UsuarioLogado } from '../model/usuarioLogado';
+import axios, { AxiosInstance } from 'axios';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
   })
 export class AuthService {
 
+  private axiosClient: AxiosInstance;
   private baseURL: string = 'http://localhost:8080/auth';
   private tokenKey = 'jwt_token';
   private usuarioLogadoKey = 'usuario_logado';
   private usuarioLogadoSubject = new BehaviorSubject<UsuarioLogado | null>(null);
 
   constructor(private http: HttpClient, 
+              private router: Router,
               private localStorageService: LocalStorageService, 
               private jwtHelper: JwtHelperService) {
+
+                this.axiosClient = axios.create({
+                  baseURL: 'http://localhost:8080',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                });
 
     this.initUsuarioLogado();
 
@@ -35,90 +46,111 @@ export class AuthService {
   setUsuarioLogado(usuario: UsuarioLogado): void {
     this.localStorageService.setItem(this.usuarioLogadoKey, usuario);
   }
-  validarCodigo(codigo: string): Observable<any> {
-    return this.http.post(`http://localhost:8080/auth/validar-codigo`, codigo, {observe: 'response'}).pipe(
-      tap((res: any) => {
-        const authToken = res.headers.get('Authorization') ?? 'nada';
-        console.log(authToken);
-        if (authToken) {
-          this.setToken(authToken);
-          const usuarioLogado = res.body;
-          console.log(usuarioLogado);
-          if (usuarioLogado) {
-            this.setUsuarioLogado(usuarioLogado);
-            this.usuarioLogadoSubject.next(usuarioLogado);
-          }
-        }else{
-          console.log('não tem login');
-        }
-      })
-    );
+  async validarCodigo(codigo: string,senha: string,repetirSenha: string): Promise<any> {
+    const validarCodigo = {
+      codigo: codigo,
+      senha: senha,
+      repetirSenha: repetirSenha,
+    };
+    const response = await
+    this.axiosClient({
+      method: 'post',
+      url: '/auth/validar-codigo',
+      data: validarCodigo
+    })
+    .then(response => {
+      console.log("senha trocada com sucesso!!");
+      this.router.navigateByUrl('/teste');
+      return response;
+    })
+    .catch(error => {
+      alert("Deu Erro!!!");
+      console.error(error);
+    }).finally(() => {
+      // redirecionar e remover o load
+      console.log("Redirecionado com sucesso!!")
+    });
+    console.log(response);
+    return response;
   }
-  gerarCodigo(email: string):void {
-    this.http.post<String>(`http://localhost:8080/auth/gerar-codigo`, email);
+  async gerarCodigo(email: string):Promise<any> {
+    console.log("iniciando");
+    // iniciar load 
+    const response = await 
+    this.axiosClient({
+      method: 'post',
+      url: '/auth/gerar-codigo',
+      data: email
+    })
+    .then(response => {
+      console.log("email enviado com sucesso!!");
+      this.router.navigateByUrl('/trocar-de-senha');
+      return response;
+    })
+    .catch(error => {
+      alert("Deu Erro!!!");
+      console.error(error);
+    }).finally(() => {
+      // redirecionar e remover o load
+      console.log("Redirecionado com sucesso!!")
+    });
+    console.log(response);
+    return response; 
   }
-  loginDois(email: string, senha: string): Observable<any> {
+  async loginDois(email: string, senha: string): Promise<any> {
     const params = {
       login: email,
-      senha: senha,
-      perfil: 1 // paciente 
+      senha: senha
     }
-
-    //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
-    return this.http.post(`${this.baseURL}`, params, {observe: 'response'}).pipe(
-      tap((res: any) => {
-        const authToken = res.headers.get('Authorization') ?? 'nada';
-        console.log(authToken);
-        if (authToken) {
-          this.setToken(authToken);
-          const usuarioLogado = res.body;
-          console.log(usuarioLogado);
-          if (usuarioLogado) {
-            this.setUsuarioLogado(usuarioLogado);
-            this.usuarioLogadoSubject.next(usuarioLogado);
-          }
-        }else{
-          console.log('não tem login');
-        }
-      })
-    );
+    const response = await 
+    this.axiosClient({
+      method: 'post',
+      url: '/auth',
+      data: params
+    })
+    .then(response => {
+      console.log("Login realizado com sucesso!!");
+      this.router.navigateByUrl('/teste');
+      return response;
+    })
+    .catch(error => {
+      alert("Deu Erro!!!");
+      console.error(error);
+    }).finally(() => {
+      // redirecionar e remover o load
+      console.log("Redirecionado com sucesso!!")
+    });
+    console.log(response);
+    return response;
   }  
-    // login(usuario: UsuarioLogado): Observable<Usuario> {
-    //   const data = {
-    //     login: usuario.login,
-    //     senha: usuario.senha
-    //   }
-    //   return this.http.post<Usuario>(`http://localhost:8080/auth`, data);
-    // }
+  setToken(token: string): void {
+    this.localStorageService.setItem(this.tokenKey, token);
+  }
 
-    setToken(token: string): void {
-      this.localStorageService.setItem(this.tokenKey, token);
-    }
   
-    
-    getUsuarioLogado() {
-      return this.usuarioLogadoSubject.asObservable();
-    }
-  
-    getToken(): string | null {
-      return this.localStorageService.getItem(this.tokenKey);
-    }
-  
-    removeToken(): void {
-      this.localStorageService.removeItem(this.tokenKey);
-    }
-  
-    removeUsuarioLogado(): void {
-      this.localStorageService.removeItem(this.usuarioLogadoKey);
-      this.usuarioLogadoSubject.next(null);
-    }
-  
-    isTokenExpired(): boolean {
-      const token = this.getToken();
-      // Verifica se o token é nulo ou está expirado
-      return !token || this.jwtHelper.isTokenExpired(token);
-      // npm install @auth0/angular-jwt
-    }
+  getUsuarioLogado() {
+    return this.usuarioLogadoSubject.asObservable();
+  }
+
+  getToken(): string | null {
+    return this.localStorageService.getItem(this.tokenKey);
+  }
+
+  removeToken(): void {
+    this.localStorageService.removeItem(this.tokenKey);
+  }
+
+  removeUsuarioLogado(): void {
+    this.localStorageService.removeItem(this.usuarioLogadoKey);
+    this.usuarioLogadoSubject.next(null);
+  }
+
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    // Verifica se o token é nulo ou está expirado
+    return !token || this.jwtHelper.isTokenExpired(token);
+    // npm install @auth0/angular-jwt
+  }
   
 
 }

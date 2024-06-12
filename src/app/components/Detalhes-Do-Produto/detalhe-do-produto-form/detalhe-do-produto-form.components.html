@@ -1,3 +1,4 @@
+<form [formGroup]="formGroup">
 <div style="background: white">
   <div style="display: grid; place-items: center;">
     <div style="position: relative;width: 70%;float: left;">
@@ -20,8 +21,8 @@
 
 
     <div style="position: relative;width: 70%;float: left;">
-      <div style="left: 907px; top: 92px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 24px; letter-spacing: 0.72px; word-wrap: break-word">Havic HV G-92 Gamepad</div>
-      <div style="left: 907px; top: 169px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; line-height: 24px; letter-spacing: 0.72px; word-wrap: break-word">$192.00</div>
+      <div style="left: 907px; top: 92px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 600; line-height: 24px; letter-spacing: 0.72px; word-wrap: break-word;">{{carro.nomeCarro}}</div>
+      <div style="left: 907px; top: 169px; position: absolute; color: black; font-size: 24px; font-family: Inter; font-weight: 400; line-height: 24px; letter-spacing: 0.72px; word-wrap: break-word">R$ {{carro.preco}}</div>
       <div style="left: 907px; top: 132px; position: absolute; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
         <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
           <div style="justify-content: flex-start; align-items: flex-start; display: flex">
@@ -31,68 +32,23 @@
             <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
             <div style="width: 20px; height: 20px; opacity: 0.25; background: black; border-radius: 1.40px"></div>
           </div>
-          <div style="opacity: 0.50; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">(150 Reviews)</div>
+          <div style="opacity: 0.50; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">({{carro.estoque}} em estoque)</div>
         </div>
         <div style="justify-content: flex-start; align-items: center; gap: 16px; display: flex">
           <div style="width: 16px; height: 0px; transform: rotate(90deg); transform-origin: 0 0; opacity: 0.50; border: 1px black solid"></div>
           <div style="opacity: 0.60; color: #00FF66; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">In Stock</div>
         </div>
       </div>
-      <div style="width: 373px; left: 907px; top: 217px; position: absolute; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</div>
-      <div style="left: 908px; top: 328px; position: absolute; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
-        <div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; line-height: 20px; letter-spacing: 0.60px; word-wrap: break-word">Colours:</div>
-        <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="width: 20px; height: 20px; position: relative">
-            <div style="width: 12px; height: 12px; left: 4px; top: 4px; position: absolute; background: #A0BCE0; border-radius: 9999px"></div>
-            <div style="width: 20px; height: 20px; left: 0px; top: 0px; position: absolute; border-radius: 9999px; border: 2px black solid"></div>
-          </div>
-          <div style="width: 20px; height: 20px; background: #E07575; border-radius: 9999px"></div>
-        </div>
-      </div>
-      <div style="left: 908px; top: 372px; position: absolute; justify-content: flex-start; align-items: center; gap: 24px; display: inline-flex">
-        <div style="color: black; font-size: 20px; font-family: Inter; font-weight: 400; line-height: 20px; letter-spacing: 0.60px; word-wrap: break-word">Size:</div>
-        <div style="justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
-          <div style="width: 32px; height: 32px; padding-left: 7px; padding-right: 7px; padding-top: 6px; padding-bottom: 6px; border-radius: 4px; overflow: hidden; border: 1px rgba(0, 0, 0, 0.50) solid; justify-content: center; align-items: center; display: flex">
-            <div style="width: 18px; height: 20px; color: black; font-size: 14px; font-family: Poppins; font-weight: 500; line-height: 21px; word-wrap: break-word">XS</div>
-          </div>
-          <div style="width: 32px; height: 32px; padding-top: 6px; padding-bottom: 6px; border-radius: 4px; overflow: hidden; border: 1px rgba(0, 0, 0, 0.50) solid; justify-content: center; align-items: center; display: flex">
-            <div style="width: 8px; height: 20px; color: black; font-size: 14px; font-family: Poppins; font-weight: 500; line-height: 21px; word-wrap: break-word">S</div>
-          </div>
-          <div style="width: 32px; height: 32px; padding-left: 10px; padding-right: 10px; padding-top: 6px; padding-bottom: 6px; background: #DB4444; border-radius: 4px; overflow: hidden; justify-content: center; align-items: center; display: flex">
-            <div style="width: 12px; height: 20px; color: #FAFAFA; font-size: 14px; font-family: Poppins; font-weight: 500; line-height: 21px; word-wrap: break-word">M</div>
-          </div>
-          <div style="width: 32px; height: 32px; padding-top: 6px; padding-bottom: 6px; border-radius: 4px; overflow: hidden; border: 1px rgba(0, 0, 0, 0.50) solid; justify-content: center; align-items: center; display: flex">
-            <div style="width: 6px; height: 20px; color: black; font-size: 14px; font-family: Poppins; font-weight: 500; line-height: 21px; word-wrap: break-word">L</div>
-          </div>
-          <div style="width: 32px; height: 32px; padding-left: 8px; padding-right: 8px; padding-top: 6px; padding-bottom: 6px; border-radius: 4px; overflow: hidden; border: 1px rgba(0, 0, 0, 0.50) solid; justify-content: center; align-items: center; display: flex">
-            <div style="width: 16px; height: 20px; color: black; font-size: 14px; font-family: Poppins; font-weight: 500; line-height: 21px; word-wrap: break-word">XL</div>
-          </div>
-        </div>
-      </div>
+      <div style="width: 373px; left: 907px; top: 217px; position: absolute; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">especificações do Carro: {{carro.carroSpec}}</div>
+      <div style="width: 373px; left: 907px; top: 260px; position: absolute; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">Cidade: {{carro.cidade}}</div>
+      <div style="width: 373px; left: 907px; top: 288px; position: absolute; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">Cor: {{carro.cor}}</div>
+      <div style="width: 373px; left: 907px; top: 316px; position: absolute; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">Kilometragem: {{carro.kilometragem}}</div>
       <div style="width: 400px; height: 0px; border: 1px black solid"></div>
       <div style="width: 159px; height: 44px; left: 908px; top: 428px; position: absolute; justify-content: flex-start; align-items: flex-start; display: inline-flex">
-        <div style="width: 40px; height: 44px; padding-left: 8px; padding-right: 8px; padding-top: 10px; padding-bottom: 10px; border-top-left-radius: 4px; border-top-right-radius: 4px; overflow: hidden; border: 1px rgba(0, 0, 0, 0.50) solid; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
-          <div style="align-self: stretch; flex: 1 1 0; padding-left: 4px; padding-right: 4px; justify-content: center; align-items: center; display: inline-flex">
-            <div style="width: 16px; height: 0px; border: 1.50px black solid"></div>
-          </div>
-        </div>
-        <div style="height: 44px; padding-top: 8px; padding-bottom: 8px; border-top: 1px rgba(0, 0, 0, 0.50) solid; border-bottom: 1px rgba(0, 0, 0, 0.50) solid; justify-content: center; align-items: center; display: flex">
-          <div style="color: black; font-size: 20px; font-family: Poppins; font-weight: 500; line-height: 28px; word-wrap: break-word">2</div>
-        </div>
-        <div style="width: 41px; height: 44px; padding-top: 10px; padding-bottom: 10px; padding-left: 9px; padding-right: 8px; background: #DB4444; border-top-left-radius: 4px; border-top-right-radius: 4px; overflow: hidden; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
-          <div style="align-self: stretch; flex: 1 1 0; padding: 4px; justify-content: center; align-items: center; display: inline-flex">
-            <div style="width: 16px; height: 16px; border: 1.50px white solid"></div>
-          </div>
-        </div>
       </div>
-      <div style="padding-left: 48px; padding-right: 48px; padding-top: 10px; padding-bottom: 10px; left: 1083px; top: 428px; position: absolute; background: #DB4444; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
+      <button style="padding-left: 48px; padding-right: 48px; padding-top: 10px; padding-bottom: 10px; left: 1010px; top: 428px; position: absolute; background: #DB4444; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
         <div style="color: #FAFAFA; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Buy Now</div>
-      </div>
-      <div style="width: 40px; height: 40px; padding: 4px; left: 1267px; top: 430px; position: absolute; border-radius: 4px; overflow: hidden; border: 1px rgba(0, 0, 0, 0.50) solid; justify-content: center; align-items: center; display: inline-flex">
-        <div style="flex: 1 1 0; align-self: stretch; padding-top: 7px; padding-bottom: 7.17px; padding-left: 6px; padding-right: 6px; justify-content: center; align-items: center; display: inline-flex">
-          <div style="width: 20px; height: 17.83px; border: 1.50px black solid"></div>
-        </div>
-      </div>
+      </button>
       <div style="width: 399px; height: 180px; left: 908px; top: 512px; position: absolute; border-radius: 4px; overflow: hidden; border: 1px rgba(0, 0, 0, 0.50) solid">
         <div style="width: 399px; height: 0px; border: 1px black solid"></div>
         <div style="left: 16px; top: 24px; position: absolute; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
@@ -108,7 +64,7 @@
           </div>
           <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
             <div style="color: black; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Free Delivery</div>
-            <div style="color: black; font-size: 12px; font-family: Poppins; font-weight: 500; text-decoration: underline; line-height: 18px; word-wrap: break-word">Enter your postal code for Delivery Availability</div>
+            <div style="color: black; font-size: 12px; font-family: Poppins; font-weight: 500; line-height: 18px; word-wrap: break-word">Best Delivery in the Word</div>
           </div>
         </div>
         <div style="left: 16px; top: 106px; position: absolute; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
@@ -177,184 +133,38 @@
       <div style="color: #DB4444; font-size: 16px; font-family: Poppins; font-weight: 600; line-height: 20px; word-wrap: break-word">Related Item</div>
     </div>
     <div style="justify-content: flex-start; align-items: flex-start; gap: 30px; display: inline-flex">
-      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-        <div style="width: 270px; height: 250px; position: relative; background: #F5F5F5; border-radius: 4px; overflow: hidden">
-          <div style="padding-left: 12px; padding-right: 12px; padding-top: 4px; padding-bottom: 4px; left: 12px; top: 12px; position: absolute; background: #DB4444; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-            <div style="color: #FAFAFA; font-size: 12px; font-family: Poppins; font-weight: 400; line-height: 18px; word-wrap: break-word">-40%</div>
-          </div>
-          <div style="left: 224px; top: 12px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="width: 34px; height: 34px; position: relative">
-              <div style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
-              <div style="width: 24px; height: 24px; padding-left: 4px; padding-right: 4px; padding-top: 5px; padding-bottom: 5px; left: 5px; top: 5px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 16px; height: 14px; border: 1.50px black solid"></div>
-              </div>
-            </div>
-            <div style="width: 34px; height: 34px; position: relative">
-              <div style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
-              <div style="width: 24px; height: 24px; padding-left: 2.39px; padding-right: 2.39px; padding-top: 5px; padding-bottom: 5px; left: 5px; top: 5px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 19.23px; height: 14px; position: relative">
-                  <div style="width: 19.23px; height: 14px; left: 0px; top: 0px; position: absolute; border: 1.50px black solid"></div>
-                  <div style="width: 6px; height: 6px; left: 6.61px; top: 4px; position: absolute; border: 1.50px black solid"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style="width: 190px; height: 180px; padding-left: 9px; padding-right: 9px; padding-top: 14px; padding-bottom: 14px; left: 40px; top: 35px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-            <img style="width: 172px; height: 152px" src="https://via.placeholder.com/172x152" />
-          </div>
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: black; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">HAVIT HV-G92 Gamepad</div>
-          <div style="justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
-            <div style="color: #DB4444; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">$120</div>
-            <div style="opacity: 0.50; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; text-decoration: line-through; line-height: 24px; word-wrap: break-word">$160</div>
-          </div>
-          <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="justify-content: flex-start; align-items: flex-start; display: flex">
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-            </div>
-            <div style="width: 32px; height: 20px; opacity: 0.50; color: black; font-size: 14px; font-family: Poppins; font-weight: 600; line-height: 21px; word-wrap: break-word">(88)</div>
-          </div>
-        </div>
-      </div>
-      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-        <div style="width: 270px; height: 250px; position: relative; background: #F5F5F5; border-radius: 4px; overflow: hidden">
-          <div style="padding-left: 12px; padding-right: 12px; padding-top: 4px; padding-bottom: 4px; left: 12px; top: 12px; position: absolute; background: #DB4444; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-            <div style="color: #FAFAFA; font-size: 12px; font-family: Poppins; font-weight: 400; line-height: 18px; word-wrap: break-word">-35%</div>
-          </div>
-          <div style="width: 270px; height: 41px; left: 0px; top: 209px; position: absolute; background: black; border-top-left-radius: 4px; border-top-right-radius: 4px"></div>
-          <div style="left: 87px; top: 217px; position: absolute; color: white; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Add To Cart</div>
-          <div style="left: 224px; top: 12px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="width: 34px; height: 34px; position: relative">
-              <div style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
-              <div style="width: 24px; height: 24px; padding-left: 4px; padding-right: 4px; padding-top: 5px; padding-bottom: 5px; left: 5px; top: 5px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 16px; height: 14px; border: 1.50px black solid"></div>
-              </div>
-            </div>
-            <div style="width: 34px; height: 34px; position: relative">
-              <div style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
-              <div style="width: 24px; height: 24px; padding-left: 2.39px; padding-right: 2.39px; padding-top: 5px; padding-bottom: 5px; left: 5px; top: 5px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 19.23px; height: 14px; position: relative">
-                  <div style="width: 19.23px; height: 14px; left: 0px; top: 0px; position: absolute; border: 1.50px black solid"></div>
-                  <div style="width: 6px; height: 6px; left: 6.61px; top: 4px; position: absolute; border: 1.50px black solid"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style="width: 190px; height: 180px; padding-top: 40px; padding-bottom: 39px; left: 40px; top: 15px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-            <img style="width: 191px; height: 101px" src="https://via.placeholder.com/191x101" />
-          </div>
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: black; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">AK-900 Wired Keyboard</div>
-          <div style="justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
-            <div style="color: #DB4444; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">$960</div>
-            <div style="opacity: 0.50; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; text-decoration: line-through; line-height: 24px; word-wrap: break-word">$1160</div>
-          </div>
-          <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="justify-content: flex-start; align-items: flex-start; display: flex">
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; opacity: 0.25; background: black; border-radius: 1.40px"></div>
-            </div>
-            <div style="width: 32px; height: 20px; opacity: 0.50; color: black; font-size: 14px; font-family: Poppins; font-weight: 600; line-height: 21px; word-wrap: break-word">(75)</div>
-          </div>
-        </div>
-      </div>
-      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-        <div style="width: 270px; height: 250px; position: relative; background: #F5F5F5; border-radius: 4px; overflow: hidden">
-          <div style="padding-left: 12px; padding-right: 12px; padding-top: 4px; padding-bottom: 4px; left: 12px; top: 12px; position: absolute; background: #DB4444; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-            <div style="color: #FAFAFA; font-size: 12px; font-family: Poppins; font-weight: 400; line-height: 18px; word-wrap: break-word">-30%</div>
-          </div>
-          <div style="left: 224px; top: 12px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="width: 34px; height: 34px; position: relative">
-              <div style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
-              <div style="width: 24px; height: 24px; padding-left: 4px; padding-right: 4px; padding-top: 5px; padding-bottom: 5px; left: 5px; top: 5px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 16px; height: 14px; border: 1.50px black solid"></div>
-              </div>
-            </div>
-            <div style="width: 34px; height: 34px; position: relative">
-              <div style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
-              <div style="width: 24px; height: 24px; padding-left: 2.39px; padding-right: 2.39px; padding-top: 5px; padding-bottom: 5px; left: 5px; top: 5px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 19.23px; height: 14px; position: relative">
-                  <div style="width: 19.23px; height: 14px; left: 0px; top: 0px; position: absolute; border: 1.50px black solid"></div>
-                  <div style="width: 6px; height: 6px; left: 6.61px; top: 4px; position: absolute; border: 1.50px black solid"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style="width: 190px; height: 180px; padding-top: 26px; padding-bottom: 25px; padding-left: 10px; padding-right: 10px; left: 40px; top: 35px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-            <img style="width: 170px; height: 129px" src="https://via.placeholder.com/170x129" />
-          </div>
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: black; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">IPS LCD Gaming Monitor</div>
-          <div style="justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
-            <div style="color: #DB4444; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">$370</div>
-            <div style="opacity: 0.50; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; text-decoration: line-through; line-height: 24px; word-wrap: break-word">$400</div>
-          </div>
-          <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="justify-content: flex-start; align-items: flex-start; display: flex">
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-            </div>
-            <div style="width: 32px; height: 20px; opacity: 0.50; color: black; font-size: 14px; font-family: Poppins; font-weight: 600; line-height: 21px; word-wrap: break-word">(99)</div>
-          </div>
-        </div>
-      </div>
-      <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
-        <div style="width: 270px; height: 250px; position: relative; background: #F5F5F5; border-radius: 4px; overflow: hidden">
-          <div style="left: 224px; top: 12px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="width: 34px; height: 34px; position: relative">
-              <div style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
-              <div style="width: 24px; height: 24px; padding-left: 4px; padding-right: 4px; padding-top: 5px; padding-bottom: 5px; left: 5px; top: 5px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 16px; height: 14px; border: 1.50px black solid"></div>
-              </div>
-            </div>
-            <div style="width: 34px; height: 34px; position: relative">
-              <div style="width: 34px; height: 34px; left: 0px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
-              <div style="width: 24px; height: 24px; padding-left: 2.39px; padding-right: 2.39px; padding-top: 5px; padding-bottom: 5px; left: 5px; top: 5px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-                <div style="width: 19.23px; height: 14px; position: relative">
-                  <div style="width: 19.23px; height: 14px; left: 0px; top: 0px; position: absolute; border: 1.50px black solid"></div>
-                  <div style="width: 6px; height: 6px; left: 6.61px; top: 4px; position: absolute; border: 1.50px black solid"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div style="width: 190px; padding-top: 47px; padding-bottom: 38px; left: 40px; top: 35px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
-            <img style="width: 191px; height: 95px" src="https://via.placeholder.com/191x95" />
-          </div>
-        </div>
-        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
-          <div style="color: black; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">RGB liquid CPU Cooler</div>
-          <div style="justify-content: flex-start; align-items: flex-start; gap: 12px; display: inline-flex">
-            <div style="color: #DB4444; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">$160</div>
-            <div style="opacity: 0.50; color: black; font-size: 16px; font-family: Poppins; font-weight: 500; text-decoration: line-through; line-height: 24px; word-wrap: break-word">$170</div>
-          </div>
-          <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
-            <div style="justify-content: flex-start; align-items: flex-start; display: flex">
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; background: #FFAD33; border-radius: 1.40px"></div>
-              <div style="width: 20px; height: 20px; padding-top: 1.83px; padding-bottom: 1.67px; padding-left: 1.67px; padding-right: 1.67px; justify-content: center; align-items: flex-start; gap: 0px; display: flex">
-                <div style="width: 8.33px; height: 15.98px; background: #FFAD33"></div>
-                <div style="width: 8.33px; height: 16.50px; transform: rotate(180deg); transform-origin: 0 0; opacity: 0.25; background: black"></div>
-              </div>
-            </div>
-            <div style="width: 32px; height: 20px; opacity: 0.50; color: black; font-size: 14px; font-family: Poppins; font-weight: 600; line-height: 21px; word-wrap: break-word">(65)</div>
-          </div>
-        </div>
-      </div>
+      <p-carousel 
+                  [value]="carros" 
+                  [numVisible]="3" 
+                  [numScroll]="3" 
+                  [circular]="false" >
+                      <ng-template let-product pTemplate="item">
+                          <div class="border-1 surface-border border-round m-2 p-3">
+                            <div style="width: 270px; height: 250px; position: relative; background: #F5F5F5; border-radius: 4px; overflow: hidden">
+                              <div style="left: 224px; top: 12px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+                              </div>
+                              <div style="width: 190px; height: 180px; padding-left: 25px; padding-right: 25px; padding-top: 17px; padding-bottom: 17px; left: 40px; top: 35px; position: absolute; justify-content: center; align-items: center; display: inline-flex">
+                                <img style="width: 140px; height: 146px"
+                                          src="../../../../assets/images/carros/carroRapido1.jpg" 
+                                          [alt]="product.nomeCarro" 
+                                          class="w-full border-round" />
+                              </div>
+                            </div>
+                            <div class="mb-3 font-medium">
+                                {{ product.nomeCarro }}
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                            <div class="mt-0 font-semibold text-xl">
+                                {{ product.cidade }}
+                            </div>
+                            <span style="padding-right: 100px;display: flex;justify-content: flex-end;">
+                              <p-button icon="pi pi-info-circle" severity="secondary" [outlined]="true" (click)="verDetalhesCarro(product)"/>
+                              <p-button icon="pi pi-shopping-cart" styleClass="ml-2" (click)="adicionarCarroEmCarrinho(product)"/>
+                            </span>
+                            </div>
+                          </div>
+                      </ng-template>
+              </p-carousel>
     </div>
   </div>
   <br/>
@@ -472,3 +282,4 @@
 </div>
   
 </div>
+</form>
