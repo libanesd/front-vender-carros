@@ -21,13 +21,14 @@ export class Carro {
     categorias! : Categoria[];
     ofertas! : Oferta[];
 
-    constructor(id: number, nome: string,carroSpec: string,cidade: string,versao : string,
+    constructor(id: number, nome: string,carroSpec: string,cidade: string,versao : string,nomeImagem: string,
         ano : string,
         cor : string,
         caracteristicas : string,
         preco : number,
         kilometragem : number,
         estoque : number){
+            this.nomeImagem = nomeImagem;
         this.id = id;
         this.nomeCarro = nome;
         this.carroSpec = carroSpec;
@@ -47,7 +48,7 @@ export class Carro {
         }
 
         const carroJson = jsonArray.map(json => new Carro(json.id, json.nomeCarro,json.carroSpec,json.cidade,
-                                                        json.versao,json.ano,json.cor,json.caracteristicas,json.preco,
+                                                        json.versao,json.nomeImagem,json.ano,json.cor,json.caracteristicas,json.preco,
                                                         json.kilometragem,json.estoque));
         console.log(carroJson);
 

@@ -21,7 +21,7 @@ import { CarrinhoListComponent } from './components/Carrinho/carrinho-list/carri
 import { UserTemplateComponent } from './components/template/user-template/user-template.component';
 import { AdminTemplateComponent } from './components/template/admin-template/admin-template.component';
 import { RecuperarSenhaFormComponent } from './components/Auth/recuperar-senha/recuperar-senha-form.component';
-import { LogFormComponent } from './components/Venda/venda-form/venda-form.component';
+import { LogFormComponent } from './components/Home/home-list/home-list.component';
 import { CarrinFormComponent } from './components/Venda/venda-list/venda-list.component';
 import { DetalheDoProdutoFormComponent } from './components/Detalhes-Do-Produto/detalhe-do-produto-form/detalhe-do-produto-form.component';
 import { AdministrarPerfilFormComponent } from './components/Administrar-Perfil/administrar-perfil/administrar-perfil-form.component';
@@ -39,12 +39,11 @@ export const routes: Routes = [
 
             { path: 'login', component: LoginFormComponent, title: 'Login'},
             { path: 'cadastro', component: CadastroFormComponent, title: 'Cadastro'},
+            { path: 'home', component: LogFormComponent, title: 'Home'},
             { path: 'produtos', component: ProdutosListComponent, title: 'Lista de Produtos'},
             { path: 'carrinho', component: CarrinhoListComponent, title: 'Carrinho'},
             { path: 'recuperar-senha', component: RecuperarSenhaFormComponent, title: 'Recuperar Senha'},
             { path: 'trocar-de-senha', component: TrocarSenhaFormComponent, title: 'Trocar Senha'},
-            { path: 'teste', component: LogFormComponent, title: 'Home'},
-            { path: 'teste2', component: CarrinFormComponent, title: 'Carrinhoo'},
             { path: 'detalhe-do-produto', component: DetalheDoProdutoFormComponent, title: 'Detalhe do protudo'},
             { path: 'administrar-perfil', component: AdministrarPerfilFormComponent, title: 'Administrar Perfil'},
             { path: 'sobre', component: SobreFormComponent, title: 'Sobre'},

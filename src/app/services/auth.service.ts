@@ -110,7 +110,7 @@ export class AuthService {
     })
     .then(response => {
       console.log("Login realizado com sucesso!!");
-      this.router.navigateByUrl('/teste');
+      this.router.navigateByUrl('/home');
       return response;
     })
     .catch(error => {

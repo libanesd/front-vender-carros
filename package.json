@@ -22,6 +22,7 @@
     "@auth0/angular-jwt": "^5.2.0",
     "@coreui/angular": "^5.1.2",
     "@coreui/coreui": "^5.0.2",
+    "angularx-qrcode": "^17.0.1",
     "axios": "^1.7.2",
     "primeicons": "^7.0.0",
     "primeng": "^17.18.0",

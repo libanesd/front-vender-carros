@@ -29,11 +29,13 @@ import { CarouselCaptionComponent,
 import { Carro } from "../../../model/carro.model";
 import { CarroService } from "../../../services/carro.service";
 import { CarrinhoService } from "../../../services/carrinho.service";
+import { UsuarioLogadoService } from "../../../services/usuario-logado.service";
+import { ImageModule } from 'primeng/image';
 
 @Component({
   selector: 'app-categoria-form',
   standalone: true,
-  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,CarouselModule,ButtonModule,
+  imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,CarouselModule,ButtonModule,ImageModule,
     ThemeDirective, CarouselComponent, CarouselIndicatorsComponent, CarouselInnerComponent, NgFor, CarouselItemComponent, CarouselCaptionComponent, CarouselControlComponent, RouterLink,
     MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
     RouterModule],
@@ -48,6 +50,7 @@ export class DetalheDoProdutoFormComponent implements OnInit{
   responsiveOptions: any[] | undefined;
 
   constructor(private formBuilder: FormBuilder,
+    private usuarioLogadoService: UsuarioLogadoService,
     private carrinhoService: CarrinhoService,
     private router: Router,
     private carroService: CarroService,
@@ -64,13 +67,16 @@ export class DetalheDoProdutoFormComponent implements OnInit{
     console.log(this.formGroup.value);
     this.carroService.findAll().subscribe(data => {
         this.carros = Carro.fromJSONArray(data);
+        this.carros.map((carro) => {
+          carro.nomeImagem = this.usuarioLogadoService.getUrlImagem(carro.nomeImagem);
+        })
     })
   }
 
   adicionarCarroEmCarrinho(produto: Carro){
     console.log(produto);
     this.carrinhoService.setCarroCarrinho(produto);
-    this.router.navigateByUrl('/teste2');
+    this.router.navigateByUrl('/carrinho');
   }
   verDetalhesCarro(produto: Carro){
     console.log(produto);

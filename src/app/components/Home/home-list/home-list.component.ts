@@ -33,14 +33,14 @@ import { UsuarioLogadoService } from "../../../services/usuario-logado.service";
 
 
 @Component({
-    selector: 'recuperar-senha-form',
+    selector: 'home-list',
     standalone: true,
     imports: [NgIf, ReactiveFormsModule, MatFormFieldModule,CarouselModule,ButtonModule,TagModule,
       ThemeDirective, CarouselComponent, CarouselIndicatorsComponent, CarouselInnerComponent, NgFor, CarouselItemComponent, CarouselCaptionComponent, CarouselControlComponent, RouterLink,
       MatInputModule, MatButtonModule, MatCardModule, MatToolbarModule,
       RouterModule],
-    templateUrl: './venda-form.components.html',
-    styleUrl: './venda-form.components.css'
+    templateUrl: './home-list.components.html',
+    styleUrl: './home-list.components.css'
   })
 export class LogFormComponent implements OnInit{
 
@@ -84,7 +84,7 @@ export class LogFormComponent implements OnInit{
     adicionarCarroEmCarrinho(produto: Carro){
       console.log(produto);
       this.carrinhoService.setCarroCarrinho(produto);
-      this.router.navigateByUrl('/teste2');
+      this.router.navigateByUrl('/carrinho');
     }
     verDetalhesCarro(produto: Carro){
       console.log(produto);

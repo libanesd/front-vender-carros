@@ -24,7 +24,7 @@ export class CategoriaService {
         nome: categoria.nome,
         carros: categoria.carros
       }
-      return this.httpClient.post<Categoria>('http://localhost:8080/categorias/insert', data);
+      return this.httpClient.post<Categoria>('http://localhost:8080/categorias/insert/', data);
     }
     
     update(categoria:Categoria): Observable<Categoria> {

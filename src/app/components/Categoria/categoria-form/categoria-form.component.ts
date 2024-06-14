@@ -114,7 +114,7 @@ export class CategoriaFormComponent implements OnInit {
       if (categoria.id ==null) {
         this.categoriaService.insert(categoria).subscribe({
           next: (categoriaCadastrado) => {
-            this.router.navigateByUrl('/categorias');
+            this.router.navigateByUrl('/admin/categorias');
           },
           error: (err) => {
             console.log('Erro ao Incluir' + JSON.stringify(err));
