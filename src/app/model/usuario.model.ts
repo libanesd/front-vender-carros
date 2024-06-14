@@ -13,6 +13,7 @@ export class Usuario{
     ofertas ! : Oferta[];
     vendas! : Venda[];
 
+
     constructor(id: number, nome: string){
         this.id = id;
         this.nome = nome;

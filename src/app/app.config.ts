@@ -15,8 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptorsFromDi()), // para funcionar com interceptor de classe
     provideAnimationsAsync(),
     JwtHelperService,
-     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
   ]
 };

@@ -123,11 +123,11 @@ export class AuthService {
     console.log(response);
     return response;
   }  
+
   setToken(token: string): void {
     this.localStorageService.setItem(this.tokenKey, token);
   }
 
-  
   getUsuarioLogado() {
     return this.usuarioLogadoSubject.asObservable();
   }
@@ -147,9 +147,18 @@ export class AuthService {
 
   isTokenExpired(): boolean {
     const token = this.getToken();
-    // Verifica se o token é nulo ou está expirado
-    return !token || this.jwtHelper.isTokenExpired(token);
-    // npm install @auth0/angular-jwt
+    console.error('token: ' + token);
+    if (!token) {
+      return true;
+    }
+    
+    try {
+      console.error('jwtHelper: ' + this.jwtHelper.isTokenExpired(token));
+      return this.jwtHelper.isTokenExpired(token);
+    } catch (error) {
+      console.error('Token inválido:', error);
+      return true; 
+    }
   }
   
 

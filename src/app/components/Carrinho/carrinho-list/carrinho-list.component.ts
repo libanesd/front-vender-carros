@@ -38,6 +38,10 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { QRCodeModule } from "angularx-qrcode";
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ImageModule } from 'primeng/image';
+import { VendaService } from "../../../services/venda.service";
+import { Venda } from "../../../model/venda.model";
+import { StatusVenda } from "../../../model/statusVenda.enum";
+import { UsuarioId } from "../../../model/usuarioId.model";
 
 @Component({
     selector: 'recuperar-senha-form',
@@ -59,8 +63,12 @@ export class CarrinhoListComponent implements OnInit{
     submitted: boolean = false;
     formGroup!: FormGroup;
 
+    venda!: Venda;
+
     constructor(private formBuilder: FormBuilder,
         private carrinhoService: CarrinhoService,
+        private vendaService: VendaService,
+        private usuarioService: UsuarioService,
         private authService: AuthService,
         private router: Router,
         private snackBar: MatSnackBar) {}
@@ -100,10 +108,23 @@ export class CarrinhoListComponent implements OnInit{
     }
     comprar(carro: Carro) {
       this.gerarQrCodeDialog = true;
+      console.log(carro);
+      this.venda = new Venda(new Date(),carro.preco,"Compra Finalizada com sucesso!!",carro,StatusVenda.Aprovada,new UsuarioId(1));
+      console.log(this.venda);
+      this.vendaService.insert(this.venda).subscribe({
+        next: (venda) => {
+          console.log(venda);
+          this.router.navigateByUrl('/home');
+        },
+        error: (err) => {
+          console.log('Erro ao Incluir' + JSON.stringify(err));
+        }
+      });
       setTimeout(() => {
         this.showIcon = true;
         setTimeout(() => {
-        this.router.navigateByUrl("/home");
+          
+          this.router.navigateByUrl("/home");
         }, 3000);
       }, 5000);
     }

@@ -20,7 +20,8 @@ export class VendaService {
     }
   
     insert(venda: Venda): Observable<Venda> {
-      return this.httpClient.post<Venda>(this.baseUrl, venda);
+      console.log(venda)
+      return this.httpClient.post<Venda>(`${this.baseUrl}/venda-add`, venda);
     }
     
     update(venda:Venda): Observable<Venda> {

@@ -28,6 +28,7 @@ import { AdministrarPerfilFormComponent } from './components/Administrar-Perfil/
 import { SobreFormComponent } from './components/Sobre/sobre-form/sobre-form.component';
 import { TrocarSenhaFormComponent } from './components/Auth/trocar-senha/trocar-senha-form.component';
 import { CarroInserirImagemFormComponent } from './components/Carro/carro-inserir-imagem-form/carro-inserir-imagem-form.component';
+import { authGuard } from './guard/auth.guard';
 
 export const routes: Routes = [
     { 
@@ -67,7 +68,7 @@ export const routes: Routes = [
             { path: 'carros/edit/:id', component: CarroFormComponent, resolve: {Carro: CarroResolver}},
 
             { path: 'categorias', component: CategoriaListComponent, title: 'Lista de categorias'},
-            { path: 'categorias/new', component: CategoriaFormComponent, title: 'Nova categoria'},
+            { path: 'categorias/new', component: CategoriaFormComponent, title: 'Nova categoria',canActivate: [authGuard]},
             { path: 'categorias/edit/:id', component: CategoriaFormComponent, resolve: {categoria: CategoriaResolver}},
 
             { path: 'marcas', component: MarcaListComponent, title: 'Lista de marcas'},
