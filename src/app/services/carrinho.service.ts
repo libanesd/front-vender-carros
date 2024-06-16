@@ -10,7 +10,7 @@ import { Carro } from '../model/carro.model';
 export class CarrinhoService {
 
   private carroCarrinho!: Carro
-  private carrinhoSubject = new BehaviorSubject<ItemCarrinho[]>([]);
+  private carrinhoSubject = new BehaviorSubject<Carro[]>([]);
   carrinho$ = this.carrinhoSubject.asObservable();
 
   constructor(private localStorageService: LocalStorageService) {
@@ -18,15 +18,15 @@ export class CarrinhoService {
     this.carrinhoSubject.next(carrinhoArmazenado);
   }
 
-  adicionar(consulta: ItemCarrinho): void {
-    const carrinhoAtual = this.carrinhoSubject.value;
-    const itemExistente = carrinhoAtual.find(item => item.id === consulta.id);
+  adicionar(carro: Carro): void {
+    let carrinhoAtual = this.carrinhoSubject.value;
 
-    if (itemExistente) {
-      itemExistente.quantidade += consulta.quantidade || 1;
-    } else {
-      carrinhoAtual.push({ ...consulta });
+    if(carrinhoAtual.length > 0){
+      carrinhoAtual = [];
     }
+    carrinhoAtual.push({
+      ...carro,
+    });
 
     this.carrinhoSubject.next(carrinhoAtual);
     this.atualizarArmazenamentoLocal();
@@ -37,17 +37,22 @@ export class CarrinhoService {
     window.location.reload(); // reload na página
   }
 
-  remover(item: ItemCarrinho): void {
+  remover(carro: Carro): void {
     const carrinhoAtual = this.carrinhoSubject.value;
-    const carrinhoAtualizado = carrinhoAtual.filter(itemCarrinho => itemCarrinho !== item);
+    const carrinhoAtualizado = carrinhoAtual.filter(itemCarrinho => itemCarrinho !== carro);
 
     this.carrinhoSubject.next(carrinhoAtualizado);
     this.atualizarArmazenamentoLocal();
   }
 
-  obter(): ItemCarrinho[] {
+  obter(): Carro[] {
     return this.carrinhoSubject.value;
     
+  }
+
+  obterQuantidade(): number {
+    console.log(this.carrinhoSubject.value.length);
+    return this.carrinhoSubject.value.length;
   }
 
   private atualizarArmazenamentoLocal(): void {

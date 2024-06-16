@@ -191,7 +191,6 @@
         [modal]="true" 
         styleClass="p-fluid">
         <div style="align-items: center;text-align: center;">
-          <qrcode style="align-items: center; align-content: center;" [qrdata]="carro.carroSpec" [width]="280" [errorCorrectionLevel]="'M'"></qrcode>
           <ng-container *ngIf="!showIcon; else iconTemplate">
             <p-progressSpinner 
               styleClass="w-4rem h-4rem" 

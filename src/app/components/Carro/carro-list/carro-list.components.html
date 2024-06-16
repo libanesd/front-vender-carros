@@ -1,50 +1,53 @@
-<mat-toolbar color="primary">
-  <div class="flex-container">
-    <span class="toolbar-title">Controle de Carros</span>
-    <div [class.dark-theme]="isDarkMode">
-  </div>
-    <button mat-fab color="accent" routerLink="/admin/carros/new">
-      <mat-icon>add</mat-icon>
-    </button>
-    <button mat-fab color="red" routerLink="/admin/carros/carro-inserir-imagem">
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
+<div style="width: 100%;height: 100%;display: grid; place-items: center; background: #FAFAFA ">
+  <mat-toolbar color="primary">
+    <div class="flex-container">
+      <span class="toolbar-title">Controle de Carros</span>
+      <div [class.dark-theme]="isDarkMode">
+    </div>
+      <button mat-fab color="accent" routerLink="/admin/carros/new">
+        <mat-icon>add</mat-icon>
+      </button>
+      <button mat-fab color="red" routerLink="/admin/carros/carro-inserir-imagem">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    
+  </mat-toolbar>
   
-</mat-toolbar>
-
-<table mat-table [dataSource]="carros" class="mat-elevation-z8">
-
-    <!-- Position Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
+  <table style="height: 800px;" mat-table [dataSource]="carros" class="mat-elevation-z8">
   
-    <!-- Nome Column -->
-    <ng-container matColumnDef="nomeCarro">
-      <th mat-header-cell *matHeaderCellDef> Nome </th>
-      <td mat-cell *matCellDef="let element"> {{element.nomeCarro}} </td>
-    </ng-container>
-
-    <!-- Acao Column -->
-    <ng-container matColumnDef="acao">
-      <th mat-header-cell *matHeaderCellDef> Ação </th>
-      <td mat-cell *matCellDef="let element"> 
-        <button mat-icon-button 
-                color="primary"
-                routerLink="/carro/edit/{{element.id}}">
-                <mat-icon>edit</mat-icon>
-        </button>
-        <button mat-icon-button 
-                color="warn">
-                <mat-icon>delete</mat-icon>
-        </button>        
-      </td>
-    </ng-container>
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+    
+      <!-- Nome Column -->
+      <ng-container matColumnDef="nomeCarro">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let element"> {{element.nomeCarro}} </td>
+      </ng-container>
   
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+      <!-- Acao Column -->
+      <ng-container matColumnDef="acao">
+        <th mat-header-cell *matHeaderCellDef> Ação </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-icon-button 
+                  color="primary"
+                  routerLink="/carro/edit/{{element.id}}">
+                  <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button 
+                  color="warn">
+                  <mat-icon>delete</mat-icon>
+          </button>        
+        </td>
+      </ng-container>
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
   
   

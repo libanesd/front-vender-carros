@@ -10,6 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Obtém o token jwt
+    console.log("Está passando em AuthInterceptor");
     const authToken = this.authService.getToken();
     
     // Clona a solicitação e adiciona o cabeçalho de autorização

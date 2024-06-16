@@ -50,7 +50,6 @@ export class Carro {
         const carroJson = jsonArray.map(json => new Carro(json.id, json.nomeCarro,json.carroSpec,json.cidade,
                                                         json.versao,json.nomeImagem,json.ano,json.cor,json.caracteristicas,json.preco,
                                                         json.kilometragem,json.estoque));
-        console.log(carroJson);
 
         return carroJson;
     }

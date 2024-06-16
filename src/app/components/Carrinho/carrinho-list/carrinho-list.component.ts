@@ -75,17 +75,15 @@ export class CarrinhoListComponent implements OnInit{
 
     ngOnInit(): void {
       this.carros = [];
-      this.carro = this.carrinhoService.getCarroCarrinho();
-      if(this.carro === undefined) {
-        this.router.navigateByUrl('/home');
-        return;
-      }
+      this.carrinhoService.carrinho$.subscribe( carro => {
+        this.carros = carro;
+      })
+      this.carro = this.carros[0];
+      console.log(this.carros);
       console.log("o carro do carrinho:"+this.carro)
-      this.carros.push(this.carro);
       this.formGroup = this.formBuilder.group({
         carros : this.carros
       });
-      console.log(this.carros)
     }
 
     hideDialog() {
@@ -93,7 +91,8 @@ export class CarrinhoListComponent implements OnInit{
       this.submitted = false;
     }
     deleteProduct(carro: Carro) {
-      this.carros = this.carros.filter((val) => val.id !== carro.id);
+      this.carros = [];
+      this.carrinhoService.remover(carro);
       this.formGroup.reset({
         carros: this.carros
       });

@@ -55,11 +55,12 @@ export class LogFormComponent implements OnInit{
       private carroService: CarroService,
         private authService: AuthService,
         private router: Router,
-        private snackBar: MatSnackBar) {}
+        private snackBar: MatSnackBar) {
+          console.log("agora tá aq");
+        }
 
     ngOnInit(): void {
       this.carroService.findAll().subscribe(data => {
-        console.log(data);
           this.carros = Carro.fromJSONArray(data);
           console.log(data);
           this.carros.map((carro) => {
@@ -82,12 +83,10 @@ export class LogFormComponent implements OnInit{
     }
 
     adicionarCarroEmCarrinho(produto: Carro){
-      console.log(produto);
-      this.carrinhoService.setCarroCarrinho(produto);
+      this.carrinhoService.adicionar(produto);
       this.router.navigateByUrl('/carrinho');
     }
     verDetalhesCarro(produto: Carro){
-      console.log(produto);
       this.carroService.setCarro(produto);
       this.router.navigateByUrl('/detalhe-do-produto');
     }

@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../../../theme.service.spec';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 
 @Component({
@@ -19,12 +20,19 @@ import { ThemeService } from '../../../theme.service.spec';
   styleUrl: './carro-list.component.css'
 })
 export class CarroListComponent implements OnInit{
+  formGroup: FormGroup;
   displayedColumns: string[] = ['id', 'nomeCarro'];
   isDarkMode: boolean = false;
   carros: Carro[] = [];
 
   constructor(private carroService: CarroService,
+    private formBuilder: FormBuilder, 
     private themeService: ThemeService) {
+      console.log("Está passando aquii no construtor de carros");
+      this.formGroup = this.formBuilder.group({
+        carros: [],
+      });
+  
       this.isDarkMode = this.themeService.isDarkMode();
   }
   toggleTheme() {
@@ -34,6 +42,7 @@ export class CarroListComponent implements OnInit{
   
   ngOnInit(): void {
       this.carroService.findAll().subscribe(data => {
+        console.log("Está passando aquii no nginit de carros");
         console.log(data);
           this.carros = Carro.fromJSONArray(data);
       })

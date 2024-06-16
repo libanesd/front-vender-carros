@@ -59,7 +59,7 @@ export class CadastroFormComponent {
           if (usuario.id ==null) {
             this.usuarioService.insertUser(usuario).subscribe({
               next: (usuarioCadastrado) => {
-                this.router.navigateByUrl('/usuarios');
+                this.router.navigateByUrl('/home');
               },
               error: (err) => {
                 console.log('Erro ao Incluir' + JSON.stringify(err));

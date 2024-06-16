@@ -58,8 +58,8 @@ export class DetalheDoProdutoFormComponent implements OnInit{
   }
   ngOnInit(): void {
     this.carro = this.carroService.getCarro();
-    if(this.carro === undefined){
-      this.router.navigateByUrl('/teste');
+    if(this.carro === undefined || this.carro === null){
+      this.router.navigateByUrl('/home');
     }
     this.formGroup = this.formBuilder.group({
       carro: this.carro
@@ -74,8 +74,7 @@ export class DetalheDoProdutoFormComponent implements OnInit{
   }
 
   adicionarCarroEmCarrinho(produto: Carro){
-    console.log(produto);
-    this.carrinhoService.setCarroCarrinho(produto);
+    this.carrinhoService.adicionar(produto);
     this.router.navigateByUrl('/carrinho');
   }
   verDetalhesCarro(produto: Carro){

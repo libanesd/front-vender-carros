@@ -35,8 +35,8 @@ export class LoginFormComponent implements OnInit {
 
     ngOnInit(): void {
       this.formGroup = this.formBuilder.group({
-        login: ['', [Validators.required, Validators.minLength(3)]],
-        senha: ['', [Validators.required, Validators.minLength(3)]]
+        login: [''],
+        senha: ['']
       });
     }
     async entrar(){
@@ -53,6 +53,45 @@ export class LoginFormComponent implements OnInit {
         this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
       }
     }
+    entrar2() {
+      if (this.formGroup.valid) {
+        const login = this.formGroup.get('login')!.value;
+        const senha = this.formGroup.get('senha')!.value;
+        this.authService.loginTres(login, senha).subscribe({
+          next: (resp) => {
+            // redirecionar para a página principal
+            console.log("Usuario logado:");
+            this.authService.getUsuarioLogado().forEach((value) => {
+              if(value != null){
+                console.log(value.tipodeusuario.label);
+                if(value.tipodeusuario.label === "Admin"){
+                  console.log("login como admin");
+                  this.router.navigateByUrl("/admin/carros").then(success => {
+                    console.log("deu certo o redirecionamento:" + success);
+                  }).catch(err => {
+                    console.error('Navigation error:', err);
+                  });
+                }else{
+                  console.log("login como usuario");
+                  this.router.navigateByUrl("/home").then(success => {
+                    console.log("deu certo o redirecionamento:" + success);
+                  }).catch(err => {
+                    console.error('Navigation error:', err);
+                  });
+                }
+              }
+            });
+          },
+          error: (err) => {
+            console.log(err);
+            this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
+          }
+        });
+      } else {
+        this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
+      }
+    }
+  
     showSnackbarTopPosition(content: any, action: any, duration: any) {
       this.snackBar.open(content, action, {
         duration: 2000,
@@ -60,24 +99,4 @@ export class LoginFormComponent implements OnInit {
         horizontalPosition: "center" // Allowed values are 'start' | 'center' | 'end' | 'left' | 'right'
       });
     }
-
-
-    
-    // entrar(){
-    //     if (this.formGroup.valid) {
-    //         const usuario = this.formGroup.value;
-    //         this.authService.login(usuario).subscribe({
-    //           next: (usuarioCadastrado) => {
-    //             console.log(usuarioCadastrado);
-    //             this.router.navigateByUrl('/produtos');
-    //           },
-    //           error: (err) => {
-    //             console.log(err);
-    //             this.showSnackbarTopPosition("Usuário ou senha Inválidos", 'Fechar', 2000);
-    //           }
-    //         });
-    //       }else {
-    //         this.showSnackbarTopPosition("Dados inválidos", 'Fechar', 2000);
-    //       }
-    // }
 }

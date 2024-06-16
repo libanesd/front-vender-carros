@@ -1,3 +1,4 @@
+<div style="width: 100%;height: 100%;display: grid; place-items: center; background: #FAFAFA ">
 <mat-toolbar color="primary">
     <div class="flex-container">
       <span class="toolbar-title">Controle de usuarios</span>
@@ -15,7 +16,7 @@
     </div>
   </mat-toolbar>
   
-  <table mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+  <table style="height: 800px;" mat-table [dataSource]="usuarios" class="mat-elevation-z8">
   
       <!-- Position Column -->
       <ng-container matColumnDef="id">
@@ -49,4 +50,4 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
     
-    
+  </div>

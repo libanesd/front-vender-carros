@@ -9,8 +9,9 @@ import { SidebarService } from '../../../services/sidebar.service';
 import { CarrinhoService } from '../../../services/carrinho.service';
 import { Subscription } from 'rxjs';
 import { MatButton, MatIconButton } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UsuarioLogado } from '../../../model/usuarioLogado';
+import { CarroService } from '../../../services/carro.service';
 
 @Component({
   selector: 'app-header',
@@ -27,10 +28,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   qtdItensCarrinho: number = 0;
 
   constructor(private sidebarService: SidebarService,
+    private carroService: CarroService,
     private carrinhoService: CarrinhoService,
     private authService: AuthService,
+    private router: Router,
     private localStorageService: LocalStorageService) {
-
   }
 
   ngOnInit(): void {
@@ -47,9 +49,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   obterQtdItensCarrinho() {
-    this.carrinhoService.carrinho$.subscribe(itens => {
-      this.qtdItensCarrinho = itens.length
-    });
+    this.qtdItensCarrinho = this.carrinhoService.obterQuantidade();
   }
 
   obterUsuarioLogado() {

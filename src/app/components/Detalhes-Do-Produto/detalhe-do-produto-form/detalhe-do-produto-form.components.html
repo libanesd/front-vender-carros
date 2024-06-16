@@ -1,11 +1,9 @@
 <form [formGroup]="formGroup">
-<div style="background: white">
+<div style="background: #f1faff ">
   <div style="display: grid; place-items: center;">
     <div style="position: relative;width: 70%;float: left;">
-      <div style="height: 580px; padding-bottom: 131px;  padding-right: 27px; left: 337px; top: 92px; position: absolute; background: #F5F5F5; border-radius: 4px; overflow: hidden; flex-direction: column; align-items: center; display: inline-flex">
-        <div style="width: 100%;height: 50%;">
-            <p-image [preview]="true" src="{{carro.nomeImagem}}" />
-        </div>
+      <div style="width: 40%;height: 580px; padding-bottom: 131px;  padding-right: 27px; left: 337px; top: 92px; position: absolute; background: #F5F5F5; border-radius: 4px; overflow: hidden; flex-direction: column; align-items: center; display: inline-flex">
+        <p-image [preview]="true" src="{{carro.nomeImagem}}" />
       </div>
       <div style="width: 170px; height: 138px; padding-top: 12px; padding-bottom: 12px; padding-left: 24px; padding-right: 25px; left: 137px; top: 92px; position: absolute; background: #F5F5F5; border-radius: 4px; overflow: hidden; justify-content: center; align-items: center; display: inline-flex">
         <img style="width: 121px; height: 114px; transform-origin: 0 0" src="{{carro.nomeImagem}}" />
@@ -45,12 +43,11 @@
       <div style="width: 373px; left: 907px; top: 260px; position: absolute; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">Cidade: {{carro.cidade}}</div>
       <div style="width: 373px; left: 907px; top: 288px; position: absolute; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">Cor: {{carro.cor}}</div>
       <div style="width: 373px; left: 907px; top: 316px; position: absolute; color: black; font-size: 14px; font-family: Poppins; font-weight: 400; line-height: 21px; word-wrap: break-word">Kilometragem: {{carro.kilometragem}}</div>
-      <div style="width: 400px; height: 0px; border: 1px black solid"></div>
       <div style="width: 159px; height: 44px; left: 908px; top: 428px; position: absolute; justify-content: flex-start; align-items: flex-start; display: inline-flex">
       </div>
       <form [formGroup]="formGroup" (ngSubmit)="adicionarCarroEmCarrinho(carro)">
         <button style="padding-left: 48px; padding-right: 48px; padding-top: 10px; padding-bottom: 10px; left: 1010px; top: 428px; position: absolute; background: #9300a0; border-radius: 4px; justify-content: center; align-items: center; gap: 10px; display: inline-flex">
-          <div style="color: #FAFAFA; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Buy Now</div>
+          <div style="color: #FAFAFA; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Comprar</div>
         </button>
       </form>
       <div style="width: 399px; height: 180px; left: 908px; top: 512px; position: absolute; border-radius: 4px; overflow: hidden; border: 1px rgba(0, 0, 0, 0.50) solid">
@@ -68,7 +65,7 @@
           </div>
           <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
             <div style="color: black; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Free Delivery</div>
-            <div style="color: black; font-size: 12px; font-family: Poppins; font-weight: 500; line-height: 18px; word-wrap: break-word">Best Delivery in the Word</div>
+            <div style="color: black; font-size: 12px; font-family: Poppins; font-weight: 500; line-height: 18px; word-wrap: break-word">Melhor entrega do Mundo!!</div>
           </div>
         </div>
         <div style="left: 16px; top: 106px; position: absolute; justify-content: flex-start; align-items: center; gap: 16px; display: inline-flex">
@@ -79,7 +76,7 @@
           </div>
           <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
             <div style="color: black; font-size: 16px; font-family: Poppins; font-weight: 500; line-height: 24px; word-wrap: break-word">Return Delivery</div>
-            <div><span style="color: black; font-size: 12px; font-family: Poppins; font-weight: 500; line-height: 18px; word-wrap: break-word">Free 30 Days Delivery Returns. </span><span style="color: black; font-size: 12px; font-family: Poppins; font-weight: 500; text-decoration: underline; line-height: 18px; word-wrap: break-word">Details</span></div>
+            <div><span style="color: black; font-size: 12px; font-family: Poppins; font-weight: 500; line-height: 18px; word-wrap: break-word">Até 30 dias de retorno </span></div>
           </div>
         </div>
       </div>
@@ -134,7 +131,7 @@
       <div style="width: 20px; height: 40px; flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
         <div style="width: 20px; height: 40px; background: #9300a0; border-radius: 4px"></div>
       </div>
-      <div style="color: #9300a0; font-size: 16px; font-family: Poppins; font-weight: 600; line-height: 20px; word-wrap: break-word">Related Item</div>
+      <div style="color: #9300a0; font-size: 16px; font-family: Poppins; font-weight: 600; line-height: 20px; word-wrap: break-word">Itens Relacionados</div>
     </div>
     <div style="justify-content: flex-start; align-items: flex-start; gap: 30px; display: inline-flex">
       <p-carousel 

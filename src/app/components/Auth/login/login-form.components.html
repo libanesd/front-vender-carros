@@ -2,7 +2,7 @@
     <div class="login-box">
         <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
         <h2 class="login-title">Bem-vindo</h2>
-        <form [formGroup]="formGroup" (ngSubmit)="entrar()">
+        <form [formGroup]="formGroup" (ngSubmit)="entrar2()">
             <mat-form-field class="login-input">
                 <input matInput placeholder="Email" formControlName="login" required>
                 <mat-error *ngIf="formGroup.get('login')!.hasError('required')">O email é obrigatório</mat-error>

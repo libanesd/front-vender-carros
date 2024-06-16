@@ -60,7 +60,7 @@ export class AuthService {
     })
     .then(response => {
       console.log("senha trocada com sucesso!!");
-      this.router.navigateByUrl('/teste');
+      this.router.navigateByUrl('/home');
       return response;
     })
     .catch(error => {
@@ -105,24 +105,63 @@ export class AuthService {
     const response = await 
     this.axiosClient({
       method: 'post',
+      maxBodyLength: Infinity,
       url: '/auth',
       data: params
     })
-    .then(response => {
+    .then((response:any) => {
+      console.log(JSON.stringify(response.headers));
       console.log("Login realizado com sucesso!!");
+      console.log(response);
+      const authToken = response.headers.get('Authorization') ?? '';
+      console.log(response.headers);
+        if (authToken) {
+          this.setToken(authToken);
+          const usuarioLogado = response.body;
+          console.log(usuarioLogado);
+          if (usuarioLogado) {
+            this.setUsuarioLogado(usuarioLogado);
+            this.usuarioLogadoSubject.next(usuarioLogado);
       this.router.navigateByUrl('/home');
-      return response;
+          }
+        }
     })
     .catch(error => {
       alert("Deu Erro!!!");
       console.error(error);
     }).finally(() => {
       // redirecionar e remover o load
+
       console.log("Redirecionado com sucesso!!")
     });
     console.log(response);
     return response;
-  }  
+  } 
+  
+  loginTres(email: string, senha: string): Observable<any> {
+    const params = {
+      login: email,
+      senha: senha,
+    }
+
+    //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
+    return this.http.post(`${this.baseURL}`, params, {observe: 'response'}).pipe(
+      tap((res: any) => {
+        const authToken = res.headers.get('authorization');
+        console.log("Depois de pegar a variavel auth");
+        if (authToken) {
+          this.setToken(authToken);
+          const usuarioLogado = res.body;
+          console.log("Depois de pegar a variavel usuario");
+          if (usuarioLogado) {
+            this.setUsuarioLogado(usuarioLogado);
+            this.usuarioLogadoSubject.next(usuarioLogado);
+            console.log("Depois de setar a variavel usuario");
+          }
+        }
+      })
+    );
+  }
 
   setToken(token: string): void {
     this.localStorageService.setItem(this.tokenKey, token);
