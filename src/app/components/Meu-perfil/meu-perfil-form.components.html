@@ -1,0 +1,41 @@
+<div class="meu-perfil-container" style="display: flex;">
+    <div class="login-container">
+        <div class="login-box">
+            <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
+            <h2 class="login-title">Alterar dados Basicos</h2>
+            <form [formGroup]="formGroup" (ngSubmit)="alterarDadosBasicos()">
+                <mat-form-field class="login-input">
+                    <mat-label >Nome</mat-label>
+                    <input matInput placeholder="Nome" formControlName="nome" required>
+                    <mat-error *ngIf="formGroup.get('nome')!.hasError('required')">O email é obrigatório</mat-error>
+                </mat-form-field>
+                <mat-form-field class="login-input">
+                    <mat-label >Endereco</mat-label>
+                    <input matInput placeholder="Endereco" formControlName="endereco" required>
+                    <mat-error *ngIf="formGroup.get('endereco')!.hasError('required')">O email é obrigatório</mat-error>
+                </mat-form-field>
+                <mat-form-field class="login-input">
+                    <mat-label >Telefone</mat-label>
+                    <input matInput placeholder="Telefone" formControlName="telefone" required>
+                    <mat-error *ngIf="formGroup.get('senha')!.hasError('required')">A senha é obrigatória</mat-error>
+                </mat-form-field>
+                <button mat-raised-button class="login-button" color="primary" type="submit">Alterar</button>
+            </form>
+        </div>
+    </div>
+    <div class="login-container">
+        <div class="login-box">
+            <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
+            <h2 class="login-title">Alterar Login e cpf</h2>
+            <h5 class="login-title">Informe a senha para continuar</h5>
+            <form [formGroup]="formGroup" (ngSubmit)="alterarLoginECpf()">
+                <mat-form-field class="login-input">
+                    <mat-label >Senha</mat-label>
+                    <input matInput type="password" placeholder="Senha" formControlName="senha" required>
+                    <mat-error *ngIf="formGroup.get('senha')!.hasError('required')">A senha é obrigatória</mat-error>
+                </mat-form-field>
+                <button mat-raised-button class="login-button" color="primary" type="submit">Alterar</button>
+            </form>
+        </div>
+    </div>
+</div>

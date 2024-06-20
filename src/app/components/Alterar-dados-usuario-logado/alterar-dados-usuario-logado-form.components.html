@@ -1,0 +1,18 @@
+<div class="login-container">
+    <div class="login-box">
+        <img class="login-icon" src="/assets/icons/passkey.svg" alt="Passkey">
+        <h2 class="login-title">Alterar dados Pessoais</h2>
+        <form [formGroup]="formGroup" (ngSubmit)="alterar()">
+            <mat-form-field class="login-input">
+                <input matInput placeholder="E-mail" formControlName="login">
+            </mat-form-field>
+            <mat-form-field class="login-input">
+                <input matInput placeholder="Cpf" formControlName="cpf">
+            </mat-form-field>
+            <mat-form-field class="login-input">
+                <input matInput placeholder="Senha" formControlName="senha" >
+            </mat-form-field>
+            <button mat-raised-button class="login-button" color="primary" type="submit">Alterar</button>
+        </form>
+    </div>
+</div>

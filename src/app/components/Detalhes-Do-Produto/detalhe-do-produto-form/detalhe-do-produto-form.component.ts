@@ -65,7 +65,7 @@ export class DetalheDoProdutoFormComponent implements OnInit{
       carro: this.carro
     });
     console.log(this.formGroup.value);
-    this.carroService.findAll().subscribe(data => {
+    this.carroService.findCarrosAVenda().subscribe(data => {
         this.carros = Carro.fromJSONArray(data);
         this.carros.map((carro) => {
           carro.nomeImagem = this.usuarioLogadoService.getUrlImagem(carro.nomeImagem);

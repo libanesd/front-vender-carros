@@ -6,6 +6,8 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { UsuarioLogado } from '../model/usuarioLogado';
 import axios, { AxiosInstance } from 'axios';
 import { Router } from '@angular/router';
+import { UsuarioDadosPessoais } from '../model/usuarioDadosPessoais.model';
+import { UsuarioDadosBasicos } from '../model/usuarioDadosBasicos.model';
 
 @Injectable({
     providedIn: 'root'
@@ -16,7 +18,9 @@ export class AuthService {
   private baseURL: string = 'http://localhost:8080/auth';
   private tokenKey = 'jwt_token';
   private usuarioLogadoKey = 'usuario_logado';
+  private usuarioDadosPessoaisKey = 'usuario_dados_pessoais';
   private usuarioLogadoSubject = new BehaviorSubject<UsuarioLogado | null>(null);
+  private usuarioDadosPessoaisSubject = new BehaviorSubject<UsuarioDadosPessoais | null>(null);
 
   constructor(private http: HttpClient, 
               private router: Router,
@@ -31,7 +35,7 @@ export class AuthService {
                 });
 
     this.initUsuarioLogado();
-
+    this.initUsuarioDadosPessoais();
   }
   private initUsuarioLogado() {
     const usuario = localStorage.getItem(this.usuarioLogadoKey);
@@ -43,8 +47,22 @@ export class AuthService {
       this.usuarioLogadoSubject.next(usuarioLogado);
     }
   }
+  private initUsuarioDadosPessoais() {
+    const usuario = localStorage.getItem(this.usuarioDadosPessoaisKey);
+    console.log(usuario);
+    if (usuario) {
+      const usuarioLogado = JSON.parse(usuario);
+
+      this.setUsuarioDadosPessoais(usuarioLogado);
+      this.usuarioDadosPessoaisSubject.next(usuarioLogado);
+    }
+  }
   setUsuarioLogado(usuario: UsuarioLogado): void {
     this.localStorageService.setItem(this.usuarioLogadoKey, usuario);
+  }
+  setUsuarioDadosPessoais(usuario: UsuarioDadosPessoais): void {
+    this.localStorageService.setItem('usuario_dados_Pessoais', usuario);
+    this.usuarioDadosPessoaisSubject.next(usuario);
   }
   async validarCodigo(codigo: string,senha: string,repetirSenha: string): Promise<any> {
     const validarCodigo = {
@@ -170,6 +188,9 @@ export class AuthService {
   getUsuarioLogado() {
     return this.usuarioLogadoSubject.asObservable();
   }
+  getUsuarioDadosPessoais() {
+    return this.usuarioDadosPessoaisSubject.asObservable();
+  }
 
   getToken(): string | null {
     return this.localStorageService.getItem(this.tokenKey);
@@ -181,6 +202,8 @@ export class AuthService {
 
   removeUsuarioLogado(): void {
     this.localStorageService.removeItem(this.usuarioLogadoKey);
+    this.localStorageService.removeItem(this.usuarioDadosPessoaisKey);
+    this.usuarioLogadoSubject.next(null);
     this.usuarioLogadoSubject.next(null);
   }
 
@@ -200,5 +223,83 @@ export class AuthService {
     }
   }
   
+  updateDadosBasicoUsuarioLogado(usuario:UsuarioDadosBasicos): Observable<any>{
+    const params = {
+      id: usuario.id,
+      login: usuario.login,
+      nome: usuario.nome,
+      endereco: usuario.endereco,
+      telefone: usuario.telefone
+    }
+    console.log("Update dados basicos"+params);
+    return this.http.post(`${this.baseURL}/update-dados-basicos`, params, {observe: 'response'}).pipe(
+      tap((res: any) => {
+        console.log(res);
+        const authToken = res.headers.get('authorization');
+        console.log("Depois de pegar a variavel auth");
+        this.removeToken()
+        this.removeUsuarioLogado();
+        if (authToken) {
+          this.setToken(authToken);
+          const usuarioLogado = res.body;
+          console.log(usuarioLogado);
+          console.log("Depois de pegar a variavel usuario");
+          if (usuarioLogado) {
+            this.setUsuarioLogado(usuarioLogado);
+            this.usuarioLogadoSubject.next(usuarioLogado);
+            console.log("Depois de setar a variavel usuario");
+          }
+        }
+      })
+    );
+  }
+  updateDadosPessoaisUsuarioLogado(usuario: UsuarioDadosPessoais): Observable<any>{
+    const params = {
+      id: usuario.id,
+      login: usuario.login,
+      email: usuario.email,
+      cpf: usuario.cpf,
+      senha: usuario.senha
+    }
+    console.log(params)
+    //{ observe: 'response' } para garantir que a resposta completa seja retornada (incluindo o cabeçalho)
+    return this.http.post(`${this.baseURL}/update-dados-pessoais`, params, {observe: 'response'}).pipe(
+      tap((res: any) => {
+        const authToken = res.headers.get('authorization');
+        console.log("Depois de pegar a variavel auth");
+        if (authToken) {
+          this.setToken(authToken);
+          const usuarioLogado = res.body;
+          console.log("Depois de pegar a variavel usuario");
+          this.removeToken()
+          this.removeUsuarioLogado();
+          if (usuarioLogado) {
+            this.setUsuarioLogado(usuarioLogado);
+            this.usuarioLogadoSubject.next(usuarioLogado);
+            console.log("Depois de setar a variavel usuario");
+          }
+        }
+      })
+    );
+  }
 
+  verificarSenha(senha: String):Observable<any>{
+    let loginAux;
+    this.getUsuarioLogado().forEach((usuario)=>{
+      loginAux = usuario?.login;
+    })
+    const param = {
+      login: loginAux,
+      senha:senha
+    }
+    console.log(param);
+    return this.http.post(`${this.baseURL}/verificar-senha`, param, {observe: 'response'}).pipe(
+      tap((res: any) => {
+        if(res){
+            const usuario = res.body;
+            this.setUsuarioDadosPessoais(usuario);
+        }
+      })
+    );
+  }
 }

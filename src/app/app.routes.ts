@@ -28,9 +28,10 @@ import { SobreFormComponent } from './components/Sobre/sobre-form/sobre-form.com
 import { TrocarSenhaFormComponent } from './components/Auth/trocar-senha/trocar-senha-form.component';
 import { CarroInserirImagemFormComponent } from './components/Carro/carro-inserir-imagem-form/carro-inserir-imagem-form.component';
 import { authGuard } from './guard/auth.guard';
+import { MeuPerfilFormComponent } from './components/Meu-perfil/meu-perfil-form.component';
+import { AlterarDadosUsuarioLogadoFormComponent } from './components/Alterar-dados-usuario-logado/alterar-dados-usuario-logado-form.component';
 
 export const routes: Routes = [
-    { path: 'login', component: LoginFormComponent, title: 'Login'},
     { 
         path: '', 
         component: UserTemplateComponent, 
@@ -39,6 +40,10 @@ export const routes: Routes = [
             {path: '', pathMatch: 'full', redirectTo: 'login'},
 
             { path: 'cadastro', component: CadastroFormComponent, title: 'Cadastro'},
+            { path: 'meu-perfil', component: MeuPerfilFormComponent, title: 'Meu Perfil'},
+            { path: 'alterar-dados', component: AlterarDadosUsuarioLogadoFormComponent, title: 'Dados Pessoais'},
+            { path: 'login', component: LoginFormComponent, title: 'Login'},
+
             { path: 'home', component: LogFormComponent, title: 'Home'},
             { path: 'produtos', component: ProdutosListComponent, title: 'Lista de Produtos'},
             { path: 'carrinho', component: CarrinhoListComponent, title: 'Carrinho'},

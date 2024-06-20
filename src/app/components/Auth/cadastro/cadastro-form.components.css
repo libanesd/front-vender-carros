@@ -4,13 +4,9 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    background-image: url('/assets/images/background_login.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    background: linear-gradient(to right, #6E45E2, #FF6636);
 }
 .header {
-    height: 48px;
     background-color: #333;
     color: #fff;
     text-align: center;

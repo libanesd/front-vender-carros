@@ -60,7 +60,7 @@ export class LogFormComponent implements OnInit{
         }
 
     ngOnInit(): void {
-      this.carroService.findAll().subscribe(data => {
+      this.carroService.findCarrosAVenda().subscribe(data => {
           this.carros = Carro.fromJSONArray(data);
           console.log(data);
           this.carros.map((carro) => {

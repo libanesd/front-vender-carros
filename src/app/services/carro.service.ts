@@ -16,6 +16,10 @@ export class CarroService {
     findAll(): Observable<Carro[]> {
       return this.httpClient.get<Carro[]>(this.baseUrl);
     }
+
+    findCarrosAVenda(): Observable<Carro[]> {
+      return this.httpClient.get<Carro[]>(`${this.baseUrl}/carros-a-venda`);
+    }
   
     findById(id: string): Observable<Carro> {
       return this.httpClient.get<Carro>(`${this.baseUrl}/${id}`);

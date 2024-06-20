@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Usuario } from '../model/usuario.model';
+import { UsuarioLogado } from '../model/usuarioLogado';
 
 @Injectable({
     providedIn: 'root'
@@ -36,8 +37,8 @@ export class UsuarioService {
       return this.httpClient.post<Usuario>(`http://localhost:8080/usuarios/cadastro`, data);
     }
     
-    update(usuario:Usuario): Observable<Usuario> {
-      return this.httpClient.put<Usuario>(`${this.baseUrl}/${usuario.id}`, Usuario);
+    update(usuario:UsuarioLogado): Observable<Usuario> {
+      return this.httpClient.put<Usuario>(`${this.baseUrl}/${usuario.id}`, usuario);
     }
   
     delete(usuario: Usuario): Observable<any> {

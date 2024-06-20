@@ -7,11 +7,69 @@
         <mat-nav-list style="width: 100%;">  
             <mat-list-item routerLink="/home">Home</mat-list-item>
             <mat-list-item routerLink="/meu-perfil">Meu Perfil</mat-list-item>
-            <mat-list-item routerLink="/minhas-compras">Minhas compras</mat-list-item>
+            <mat-list-item (click)="showDialog()">Minhas compras</mat-list-item>
             <mat-list-item routerLink="/carrinho">Carrinho</mat-list-item>
         </mat-nav-list>
     </mat-drawer>
-
+    <p-dialog 
+    header="MINHAS COMPRAS" 
+    [resizable]="false" 
+    [modal]="true" 
+    [maximizable]="true" 
+    appendTo="body" 
+    [(visible)]="dialogVisible" 
+    [style]="{width: '75vw'}" 
+    [contentStyle]="{height: '300px'}">
+        <p-table 
+            [value]="vendas" 
+            [scrollable]="true"
+            scrollHeight="flex" 
+            [tableStyle]="{'min-width': '50rem'}">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>
+                            id
+                        </th>
+                        <th>
+                            descricao
+                        </th>
+                        <th>
+                            dataDeCompra
+                        </th>
+                        <th>
+                            precoDaCompra
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-venda>
+                    <tr>
+                        <td>
+                            {{venda.statusVenda}}
+                        </td>
+                        <td>
+                            {{venda.descricao}}
+                        </td>
+                        <td>
+                            {{venda.dataDeCompra}}
+                        </td>
+                        <td>
+                            {{venda.precoDaCompra}}
+                        </td>
+                    </tr>
+                </ng-template>
+        </p-table>
+        <ng-template pTemplate="footer">
+            <button 
+                type="button"
+                pButton
+                pRipple 
+                icon="pi pi-times" 
+                (click)="dialogVisible=false" 
+                label="Dismiss" 
+                class="p-button-text">
+            </button>
+        </ng-template>
+</p-dialog>
     <mat-drawer-content>
         <router-outlet></router-outlet>
     </mat-drawer-content>
