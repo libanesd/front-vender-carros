@@ -19,7 +19,7 @@ import { ThemeService } from '../../../theme.service.spec';
   styleUrl: './usuario-list.component.css'
 })
 export class UsuarioListComponent implements OnInit{
-  displayedColumns: string[] = ['id', 'nomeUsuario'];
+  displayedColumns: string[] = ['id', 'nomeUsuario','acao'];
   isDarkMode: boolean = false;
   usuarios: Usuario[] = [];
 

@@ -21,7 +21,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class CarroListComponent implements OnInit{
   formGroup: FormGroup;
-  displayedColumns: string[] = ['id', 'nomeCarro'];
+  displayedColumns: string[] = ['id', 'nomeCarro','acao'];
   isDarkMode: boolean = false;
   carros: Carro[] = [];
 

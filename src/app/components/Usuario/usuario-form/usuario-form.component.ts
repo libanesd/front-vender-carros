@@ -71,7 +71,7 @@ export class UsuarioFormComponent {
             } else {
               this.usuarioService.update(usuario).subscribe({
                 next: (usuarioAlterado) => {
-                  this.router.navigateByUrl('/usuarios');
+                  this.router.navigateByUrl('/admin/usuarios');
                 },
                 error: (err) => {
                   console.log('Erro ao Editar' + JSON.stringify(err));

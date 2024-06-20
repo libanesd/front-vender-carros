@@ -68,7 +68,7 @@ export const routes: Routes = [
             { path: 'carros', component: CarroListComponent, title: 'Lista de Carros',canActivate: [authGuard]},
             { path: 'carros/new', component: CarroFormComponent, title: 'Novo Carro',canActivate: [authGuard]},
             { path: 'carros/carro-inserir-imagem', component: CarroInserirImagemFormComponent, title: 'Nova imagem',canActivate: [authGuard]},
-            { path: 'carros/edit/:id', component: CarroFormComponent, resolve: {Carro: CarroResolver}},
+            { path: 'carros/edit/:id', component: CarroFormComponent, resolve: {carro: CarroResolver}},
 
             { path: 'categorias', component: CategoriaListComponent, title: 'Lista de categorias',canActivate: [authGuard]},
             { path: 'categorias/new', component: CategoriaFormComponent, title: 'Nova categoria',canActivate: [authGuard]},
@@ -76,15 +76,15 @@ export const routes: Routes = [
 
             { path: 'marcas', component: MarcaListComponent, title: 'Lista de marcas',canActivate: [authGuard]},
             { path: 'marcas/new', component: MarcaFormComponent, title: 'Nova marca',canActivate: [authGuard]},
-            { path: 'marcas/edit/:id', component: MarcaFormComponent, resolve: {Marca: MarcaResolver}},
+            { path: 'marcas/edit/:id', component: MarcaFormComponent, resolve: {marca: MarcaResolver}},
 
             { path: 'ofertas', component: OfertaListComponent, title: 'Lista de Ofertas',canActivate: [authGuard]},
             { path: 'ofertas/new', component: OfertaFormComponent, title: 'Nova oferta',canActivate: [authGuard]},
-            { path: 'ofertas/edit/:id', component: OfertaFormComponent, resolve: {Oferta: OfertaResolver}},
+            { path: 'ofertas/edit/:id', component: OfertaFormComponent, resolve: {oferta: OfertaResolver}},
 
             { path: 'usuarios', component: UsuarioListComponent, title: 'Lista de Ofertas',canActivate: [authGuard]},
             { path: 'usuarios/new', component: UsuarioFormComponent, title: 'Novo usuario',canActivate: [authGuard]},
-            { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {Usuario: UsuarioResolver}},
+            { path: 'usuarios/edit/:id', component: UsuarioFormComponent, resolve: {usuario: UsuarioResolver}},
         ]
 
     }

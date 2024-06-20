@@ -22,7 +22,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class OfertaListComponent implements OnInit{
 
   formGroup: FormGroup;
-  displayedColumns: string[] = ['id', 'nome'];
+  displayedColumns: string[] = ['id', 'nome','acao'];
   ofertas: Oferta[] = [];
 
   isDarkMode: boolean = false;

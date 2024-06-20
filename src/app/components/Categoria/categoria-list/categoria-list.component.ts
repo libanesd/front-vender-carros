@@ -19,7 +19,7 @@ import { ThemeService } from '../../../theme.service.spec';
   styleUrl: './categoria-list.component.css'
 })
 export class CategoriaListComponent implements OnInit{
-  displayedColumns: string[] = ['id', 'nomecategoria'];
+  displayedColumns: string[] = ['id', 'nomecategoria','acao'];
   isDarkMode: boolean = false;
   categorias: Categoria[] = [];
 

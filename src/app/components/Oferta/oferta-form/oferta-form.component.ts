@@ -147,7 +147,7 @@ export class OfertaFormComponent implements OnInit{
       } else {
         this.ofertaService.update(oferta).subscribe({
           next: (ofertaAlterado) => {
-            this.router.navigateByUrl('/ofertas');
+            this.router.navigateByUrl('/admin/ofertas');
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));

@@ -100,7 +100,7 @@ export class MarcaFormComponent implements OnInit{
       } else {
         this.marcaService.update(marca).subscribe({
           next: (marcaAlterado) => {
-            this.router.navigateByUrl('/marcas');
+            this.router.navigateByUrl('/admin/marcas');
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));

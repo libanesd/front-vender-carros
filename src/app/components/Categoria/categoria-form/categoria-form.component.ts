@@ -123,7 +123,7 @@ export class CategoriaFormComponent implements OnInit {
       } else {
         this.categoriaService.update(categoria).subscribe({
           next: (categoriaAlterado) => {
-            this.router.navigateByUrl('/categorias');
+            this.router.navigateByUrl('/admin/categorias');
           },
           error: (err) => {
             console.log('Erro ao Editar' + JSON.stringify(err));
