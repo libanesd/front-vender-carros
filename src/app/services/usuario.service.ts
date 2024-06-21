@@ -44,4 +44,10 @@ export class UsuarioService {
     delete(usuario: Usuario): Observable<any> {
       return this.httpClient.delete<any>(`${this.baseUrl}/${usuario.id}`);
     }
+    deletadoById(id:number): Observable<any> {
+      return this.httpClient.put<any>(`${this.baseUrl}/deletado/${id}`,null);
+    }
+    desativadoById(id:number): Observable<any> {
+      return this.httpClient.put<any>(`${this.baseUrl}/desativado/${id}`,null);
+    }
 }

@@ -38,6 +38,18 @@ export class OfertaListComponent implements OnInit{
     });
   }
 
+  deletar(oferta:Oferta){
+    this.ofertaService.deletadoById(oferta.id).subscribe({
+      next(res){
+        console.log(res);
+      },
+      error(err){
+        console.log(err);
+      }
+    });
+  }
+
+
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.setDarkMode(this.isDarkMode);

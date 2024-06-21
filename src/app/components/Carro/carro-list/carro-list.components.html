@@ -37,6 +37,11 @@
                   routerLink="/admin/carros/edit/{{element.id}}">
                   <mat-icon>edit</mat-icon>
           </button>
+          <button mat-icon-button
+                  color="warn"
+                  (click)="deletar(element)">
+                  <mat-icon>delete</mat-icon>
+          </button>
         </td>
       </ng-container>
     

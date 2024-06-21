@@ -39,6 +39,17 @@ export class CarroListComponent implements OnInit{
     this.isDarkMode = !this.isDarkMode;
     this.themeService.setDarkMode(this.isDarkMode);
   }
+
+  deletar(carro:Carro){
+    this.carroService.deletadoById(carro.id).subscribe({
+      next(res){
+        console.log(res);
+      },
+      error(err){
+        console.log(err);
+      }
+    });
+  }
   
   ngOnInit(): void {
       this.carroService.findAll().subscribe(data => {

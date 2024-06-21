@@ -36,6 +36,16 @@ export class MarcaListComponent implements OnInit{
 
       });
   }
+  deletar(marca:Marca){
+    this.marcaService.deletadoById(marca.id).subscribe({
+      next(res){
+        console.log(res);
+      },
+      error(err){
+        console.log(err);
+      }
+    });
+  }
 
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;

@@ -26,7 +26,12 @@ export class CategoriaService {
       }
       return this.httpClient.post<Categoria>('http://localhost:8080/categorias/insert/', data);
     }
-    
+    deletadoById(id:number): Observable<any> {
+      return this.httpClient.put<any>(`${this.baseUrl}/deletado/${id}`,null);
+    }
+    desativadoById(id:number): Observable<any> {
+      return this.httpClient.put<any>(`${this.baseUrl}/desativado/${id}`,null);
+    }
     update(categoria:Categoria): Observable<Categoria> {
       return this.httpClient.put<Categoria>(`${this.baseUrl}/${categoria.id}`, categoria);
     }

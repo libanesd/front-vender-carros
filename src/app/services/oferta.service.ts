@@ -36,4 +36,10 @@ export class OfertaService {
     delete(oferta: Oferta): Observable<any> {
       return this.httpClient.delete<any>(`${this.baseUrl}/${oferta.id}`);
     }
+    deletadoById(id:number): Observable<any> {
+      return this.httpClient.put<any>(`${this.baseUrl}/deletado/${id}`,null);
+    }
+    desativadoById(id:number): Observable<any> {
+      return this.httpClient.put<any>(`${this.baseUrl}/desativado/${id}`,null);
+    }
 }

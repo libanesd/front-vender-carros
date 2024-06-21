@@ -27,6 +27,17 @@ export class UsuarioListComponent implements OnInit{
     private themeService: ThemeService) {
       this.isDarkMode = this.themeService.isDarkMode();
   }
+
+  deletar(usuario:Usuario){
+    this.usuarioService.deletadoById(usuario.id).subscribe({
+      next(res){
+        console.log(res);
+      },
+      error(err){
+        console.log(err);
+      }
+    });
+  }
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.setDarkMode(this.isDarkMode);

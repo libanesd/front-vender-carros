@@ -27,6 +27,16 @@ export class CategoriaListComponent implements OnInit{
     private themeService: ThemeService) {
 
   }
+  deletar(categoria:Categoria){
+    this.categoriaService.deletadoById(categoria.id).subscribe({
+      next(res){
+        console.log(res);
+      },
+      error(err){
+        console.log(err);
+      }
+    });
+  }
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
     this.themeService.setDarkMode(this.isDarkMode);
